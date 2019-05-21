@@ -59,7 +59,7 @@ class MainBody extends Component {
                     </div>
                 </Grid>
                 <Grid item xs={12} sm={5}>
-                    <img className="group_image" src="/assets/image/group.png"></img>
+                    <img className="group_image" src="/assets/image/Group.png"></img>
                 </Grid>
 
             </Grid>
@@ -67,7 +67,7 @@ class MainBody extends Component {
             <Grid container spacing={24}>
                 
                 <Grid item xs={12} sm={5}>
-                    <img className="group_image" src="/assets/image/group1.png"></img>
+                    <img className="group_image" src="/assets/image/Group1.png"></img>
                 </Grid>
 
                 <Grid item xs={12} sm={7}>

@@ -63,8 +63,8 @@ class MainBody extends Component {
                 </Grid>
 
             </Grid>
-
-            <Grid container spacing={24}>
+            
+            <Grid container spacing={24} className="web-based-item">
                 
                 <Grid item xs={12} sm={5}>
                     <img className="group_image" src="/assets/image/Group1.png"></img>
@@ -75,6 +75,18 @@ class MainBody extends Component {
                         <p className="mainbody_title">Love items you must have!</p>
                         <p className="mainbody_text">Want to know exactly what you’re getting? Love items by clicking the heart icon on the product, these exact items will go onto your registry for guests to purchase! Loving the item shows your guest that this is an item you personally have selected!</p>
                     </div>
+                </Grid>
+
+            </Grid>
+            <Grid container spacing={24}  className="mobile-based-item">
+                <Grid item xs={12} sm={7}>
+                    <div className="main-content">
+                        <p className="mainbody_title">Love items you must have!</p>
+                        <p className="mainbody_text">Want to know exactly what you’re getting? Love items by clicking the heart icon on the product, these exact items will go onto your registry for guests to purchase! Loving the item shows your guest that this is an item you personally have selected!</p>
+                    </div>
+                </Grid>
+                <Grid item xs={12} sm={5}>
+                    <img className="group_image" src="/assets/image/Group1.png"></img>
                 </Grid>
 
             </Grid>

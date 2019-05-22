@@ -32,10 +32,10 @@ class HeaderHome extends  Component {
                 <Button classes={{label: "btn rectangle createAcco"}} href={"/frontend/register/"}>Create Account</Button>
                 <Button classes={{label: "btn rectangle findBride"}}>Find the Bride</Button>
             </div>
-            <h3 style={{marginTop:'50px'}}>
+            <div style={{marginTop:'50px'}}>
                 Are you already registered?
                 <a href=""> Login</a>
-            </h3>
+            </div>
 
         </div>
       );

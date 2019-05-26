@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import WebFont from 'webfontloader';
 import SignupForm from './components/SignupForm';
 import RegisterForm from './components/RegisterForm';
+import SigninForm from './components/SigninForm';
 
 const config = {
     apiKey: "AIzaSyDx15o-XIi4AQV66Y88MIAo6Yb1VcdRdxc",
@@ -35,6 +36,7 @@ const Root = () =>
     <Route exact path="/" component={App} />
     <Route exact path="/frontend/signup" component={ SignupForm } />
     <Route exact path="/frontend/register" component={ RegisterForm } />
+    <Route exact path="/frontend/signin" component={ SigninForm } />
     {/* <Route exact path="/frontend/main" component= { Main } />
     <Route exact path="/frontend/React-table" component= { ReactTable } />
       <Route exact path="/frontend/SecondForm" component= { SecondForm } />

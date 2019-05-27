@@ -34,7 +34,7 @@ const Root = () =>
       <div id="app">
       
     <Route exact path="/" component={App} />
-    <Route exact path="/frontend/signup" component={ SignupForm } />
+    {/* <Route exact path="/frontend/signup" component={ SignupForm } /> */}
     <Route exact path="/frontend/register" component={ RegisterForm } />
     <Route exact path="/frontend/signin" component={ SigninForm } />
     {/* <Route exact path="/frontend/main" component= { Main } />

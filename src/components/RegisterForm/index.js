@@ -9,6 +9,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import LoginRegister from '../Register';
 import Button from '@material-ui/core/Button'
+import superagent from "superagent";
+import APIPath from '../Api';
 
 const styles = theme => ({
   root: {
@@ -89,6 +91,23 @@ class RegisterForm extends Component {
 
   handleRegister = content => {
     alert(`Registering with content '${JSON.stringify(content)}'`);
+    console.log(content);
+    const payload = content
+    superagent
+      .post(APIPath + "/accounts/register")
+      .set("Content-Type", "application/json")
+      .send(payload)
+          .then(res => {
+              console.log("response is ", res)
+              // localStorage.setItem("token", res.body.token);
+              // localStorage.setItem("email" , res.body.email);
+              // this.props.onSuccessfulSignup();
+          })
+          .catch(err => {
+              console.log("Error response is", err.response);
+              // this.setState({error: err.response.body.error})
+              console.log("this.state is", this.state)
+          });
   };
 
   handleRegisterWithProvider = providerId => {

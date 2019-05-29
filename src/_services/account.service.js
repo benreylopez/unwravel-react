@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { authHeader } from '../_helpers';
-
+import APIPath from '../components/Api'
 const accountService = {
     login,
     logout,
@@ -14,7 +14,7 @@ export default accountService;
 function login(email, password) {
   let response = axios({
     method: 'post',
-    url: `http://localhost:8000/api/accounts/auth/login/`,
+    url: APIPath + `/api/accounts/auth/login/`,
     headers: { 'Content-Type': 'application/json' },
     data: {email, password},
   })
@@ -38,7 +38,7 @@ function logout() {
 function register(user) {
   let response = axios({
     method: 'post',
-    url: `http://localhost:8000/api/accounts/auth/register/`,
+    url: APIPath + `/api/accounts/auth/register/`,
     headers: { 'Content-Type': 'application/json' },
     data: user,
   })

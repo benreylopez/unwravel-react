@@ -47,7 +47,8 @@ class Header extends  Component {
                 
             </div>
             <div className="col-md-3 middle col-5">
-                <Button classes={{label: "btn rectangle login"}} onClick={() => this.setState({ open: true})}>Login</Button>
+                
+                <Button classes={{label: "btn rectangle login"}} href={"/frontend/login/"}>Login</Button>
             </div>
             <Modal
                 aria-labelledby="simple-modal-title"

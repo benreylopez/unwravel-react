@@ -3,6 +3,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Formsy from 'formsy-react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid'
+import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
@@ -46,7 +47,8 @@ class LocalUserRegister extends Component {
   render() {
     const {
       classes,
-      registerFailed
+      registerFailed,
+      errors
     } = this.props;
     const {canSubmit} = this.state;
     return (
@@ -176,7 +178,11 @@ class LocalUserRegister extends Component {
             </Grid>
 
             {
-              registerFailed && <LoginRegisterError message={registerFailed}/>
+              registerFailed && <LoginRegisterError message={errors.email}/>
+            }
+
+            {
+              registerFailed && <LoginRegisterError message={errors.password1}/>
             }
 
             <div className="header_title">
@@ -206,4 +212,13 @@ class LocalUserRegister extends Component {
 
 }
 
-export default withStyles(styles)(LocalUserRegister);
+function mapStateToProps(state) {
+  const { registering, errors } = state.registration;
+  console.log("Register Error:",state.registration);
+  return {
+    loading: registering,
+    errors: errors
+  };
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(LocalUserRegister));

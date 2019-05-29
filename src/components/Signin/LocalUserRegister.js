@@ -3,6 +3,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Formsy from 'formsy-react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid'
+import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
@@ -46,9 +47,11 @@ class LocalUserRegister extends Component {
   render() {
     const {
       classes,
-      registerFailed
+      registerFailed,
+      errors
     } = this.props;
     const {canSubmit} = this.state;
+    console.log("2Register",errors);
     return (
         <div className={classes.root} style={{marginTop:"30px"}}>
           <Formsy className={classes.form}
@@ -57,8 +60,8 @@ class LocalUserRegister extends Component {
             <Grid container spacing={12}>
 							<Grid item xs={12} sm={12}>         
 								<ValidatedTextField
-										name="topsize"
-										autoComplete="topsize"
+										name="email"
+										autoComplete="email"
 										validations="minLength:1"
 										validationErrors={{
 											minLength: "Too short"
@@ -84,9 +87,13 @@ class LocalUserRegister extends Component {
 
             </Grid>
 
+
             {
-              registerFailed && <LoginRegisterError message={registerFailed}/>
+              errors && <LoginRegisterError message={errors}/>
             }
+
+
+
 
             <div className="header_title" style={{marginTop:"50px"}}>
               <Button classes={{label:"createAccoSub"}} type="submit" style={{width:'95%'}}
@@ -115,4 +122,24 @@ class LocalUserRegister extends Component {
 
 }
 
-export default withStyles(styles)(LocalUserRegister);
+function mapStateToProps(state) {
+  const { loggingIn, loggingError } = state.authentication;
+  const { alert } = state;
+  console.log("LoginError:",loggingError);
+  var temp = '';
+  if(loggingError)
+  {
+    if(loggingError.email)
+      temp = loggingError.email[0];
+    else
+      temp = loggingError.non_field_errors[0];
+  }
+  return {
+    loading: loggingIn,
+    errors: temp,
+    alert,
+  };
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(LocalUserRegister));
+

@@ -1,122 +1,48 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import 'typeface-roboto';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import {AppBar, Toolbar, Typography} from '@material-ui/core';
-import {withStyles} from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Paper from '@material-ui/core/Paper';
-import LoginRegister from '../Register';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import Header from "../Header"
+import HeaderHome from "../HeaderHome"
+import HeaderMain from "../HeaderMain"
+import NavBar from "../NavBar"
+import HomePage from "../HomePage"
+import SigninForm from "../SigninForm"
 
-const styles = theme => ({
-  root: {
-    fontFamily: theme.typography.fontFamily,
-    padding: 20
-  },
-  footer: {
-    padding: '10px'
-  },
-  controls: {
-    margin: [[theme.spacing.unit * 2, 0]],
-    padding: theme.spacing.unit
+import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
+import DialogContent from '@material-ui/core/DialogContent';
+import Button from '@material-ui/core/Button'
+
+class LoginForm extends  Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: true,
+      setOpen: false
+    }
   }
-});
-
-class RegisterForm extends Component {
-  state = {
-    disableLocal: false,
-    disableRegister: false,
-    disableRegisterProviders: false
-  };
 
   render() {
-    const {classes} = this.props;
-
-    const header = (
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="title" color="inherit">Welcome</Typography>
-        </Toolbar>
-      </AppBar>
-    );
-
-    const footer = (
-      <div className={classes.footer}>
-        <Typography variant="caption" align="center">Footer Goes Here</Typography>
-      </div>
-    );
-
     return (
-      <div className={classes.root}>
-        <CssBaseline/>
-        <LoginRegister header={header} footer={footer}
-                       onLogin={this.handleLogin}
-                       onLoginWithProvider={this.handleLoginWithProvider}
-                       onRegister={this.handleRegister}
-                       onRegisterWithProvider={this.handleRegisterWithProvider}
-                       disableLocal={this.state.disableLocal}
-                       disableRegister={this.state.disableRegister}
-                       disableRegisterProviders={this.state.disableRegisterProviders}
-        />
-        <Paper className={classes.controls}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={this.state.disableLocal}
-                onChange={this.handleChange('disableLocal')}
-                value="disableLocal"
-                color="primary"
-              />
-            }
-            label="Disable local login/register"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={this.state.disableRegister}
-                onChange={this.handleChange('disableRegister')}
-                value="disableRegister"
-                color="primary"
-              />
-            }
-            label="Disable registering"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={this.state.disableRegisterProviders}
-                onChange={this.handleChange('disableRegisterProviders')}
-                value="disableRegisterProviders"
-                color="primary"
-              />
-            }
-            label="Disable providers when registering"
-          />
-        </Paper>
-      </div>
-    );
-  }
-
-  handleChange = name => event => {
-    this.setState({[name]: event.target.checked});
-  };
-
-  handleLogin = content => {
-    alert(`Logging in with content '${JSON.stringify(content)}'`);
-  };
-
-  handleLoginWithProvider = providerId => {
-    alert(`Logging in with provider '${providerId}'`);
-  };
-
-  handleRegister = content => {
-    alert(`Registering with content '${JSON.stringify(content)}'`);
-  };
-
-  handleRegisterWithProvider = providerId => {
-    alert(`Registering with provider '${providerId}'`);
-  };
+        <div>
+            <HomePage />
+            <Modal
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                open={this.state.open}
+            >
+              <DialogContent style={{margin:"auto", marginTop:"50px"}}>
+                <Grid container spacing={24}>
+                  <Grid item sm={4} xs={12}></Grid>
+                  <Grid item sm = {4} xs={12}>
+                    <SigninForm />
+                  </Grid>
+                  <Grid item sm={4} xs={12}></Grid>
+                </Grid>
+              </DialogContent>
+            </Modal>
+        </div>
+      );
+    }
 }
 
-export default withStyles(styles)(RegisterForm);
+export default LoginForm;

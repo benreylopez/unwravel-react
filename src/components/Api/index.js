@@ -1,2 +1,2 @@
-const api = process.env.Node_env == 'production'?"https://api.aiprofessionals.io":"http://3ea8ce38.ngrok.io"
+const api = process.env.Node_env == 'production'?"https://api.aiprofessionals.io":"http://localhost:8000"
 export default api;

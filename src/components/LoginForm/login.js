@@ -7,16 +7,12 @@ import {withStyles} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
-import LoginRegister from '../Signin';
-import Button from '@material-ui/core/Button';
-import { accountActions } from '../../_actions';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import LoginRegister from '../Register';
 
 const styles = theme => ({
   root: {
     fontFamily: theme.typography.fontFamily,
-    // padding: 20
+    padding: 20
   },
   footer: {
     padding: '10px'
@@ -24,56 +20,80 @@ const styles = theme => ({
   controls: {
     margin: [[theme.spacing.unit * 2, 0]],
     padding: theme.spacing.unit
-  },
-  
+  }
 });
 
-class SigninForm extends Component {
+class RegisterForm extends Component {
   state = {
     disableLocal: false,
-    disableRegister: true,
-    disableRegisterProviders: true,
-    registerFailed: '',
-    submitted: false
+    disableRegister: false,
+    disableRegisterProviders: false
   };
 
   render() {
-    const {classes, errors} = this.props;
-    console.log("ERRORS:",errors);
+    const {classes} = this.props;
+
     const header = (
-        <div>
-        <div className="row">
-            
-        </div>
-        <div className="register_title" style={{marginTop:"50px"}}>
-            <p style={{fontSize: '30px'}}>
-                Log In
-            </p>
-        </div>
-        </div>
-        
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="title" color="inherit">Welcome</Typography>
+        </Toolbar>
+      </AppBar>
     );
 
     const footer = (
       <div className={classes.footer}>
-        <img className="foot_image float-right" src="/assets/image/Bitmap.png" style={{width:"40%"}}></img>
+        <Typography variant="caption" align="center">Footer Goes Here</Typography>
       </div>
     );
 
     return (
-      <div className={classes.root} style={{height: '500px'}}>
+      <div className={classes.root}>
         <CssBaseline/>
         <LoginRegister header={header} footer={footer}
                        onLogin={this.handleLogin}
                        onLoginWithProvider={this.handleLoginWithProvider}
-                       onRegister={this.handleRegister.bind(this)}
+                       onRegister={this.handleRegister}
                        onRegisterWithProvider={this.handleRegisterWithProvider}
-
                        disableLocal={this.state.disableLocal}
                        disableRegister={this.state.disableRegister}
                        disableRegisterProviders={this.state.disableRegisterProviders}
         />
-       
+        <Paper className={classes.controls}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={this.state.disableLocal}
+                onChange={this.handleChange('disableLocal')}
+                value="disableLocal"
+                color="primary"
+              />
+            }
+            label="Disable local login/register"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={this.state.disableRegister}
+                onChange={this.handleChange('disableRegister')}
+                value="disableRegister"
+                color="primary"
+              />
+            }
+            label="Disable registering"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={this.state.disableRegisterProviders}
+                onChange={this.handleChange('disableRegisterProviders')}
+                value="disableRegisterProviders"
+                color="primary"
+              />
+            }
+            label="Disable providers when registering"
+          />
+        </Paper>
       </div>
     );
   }
@@ -91,9 +111,7 @@ class SigninForm extends Component {
   };
 
   handleRegister = content => {
-    this.setState({ submitted: true });
-    const { dispatch } = this.props;
-    dispatch(accountActions.login(content['email'], content['password']));
+    alert(`Registering with content '${JSON.stringify(content)}'`);
   };
 
   handleRegisterWithProvider = providerId => {
@@ -101,15 +119,4 @@ class SigninForm extends Component {
   };
 }
 
-function mapStateToProps(state) {
-  const { loggingIn, loggingError } = state.authentication;
-  const { alert } = state;
-  return {
-    loading: loggingIn,
-    errors: loggingError,
-    alert,
-  };
-}
-
-
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(SigninForm)));
+export default withStyles(styles)(RegisterForm);

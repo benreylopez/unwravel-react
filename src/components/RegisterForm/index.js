@@ -11,6 +11,9 @@ import LoginRegister from '../Register';
 import Button from '@material-ui/core/Button'
 import superagent from "superagent";
 import APIPath from '../Api';
+import { accountActions } from '../../_actions';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 const styles = theme => ({
   root: {
@@ -30,11 +33,17 @@ class RegisterForm extends Component {
   state = {
     disableLocal: false,
     disableRegister: true,
-    disableRegisterProviders: true
+    disableRegisterProviders: true,
+    registerFailed: '',
+    submitted: false
   };
 
+  constructor(props) {
+    super(props);
+
+  }
   render() {
-    const {classes} = this.props;
+    const {classes, loading, errors} = this.props;
 
     const header = (
         <div>
@@ -46,9 +55,7 @@ class RegisterForm extends Component {
             
         </div>
         <div className="register_title">
-            <p>
-                Create Your Account
-            </p>
+            <p>Create Your Account</p>
         </div>
         </div>
         
@@ -66,8 +73,9 @@ class RegisterForm extends Component {
         <LoginRegister header={header} footer={footer}
                        onLogin={this.handleLogin}
                        onLoginWithProvider={this.handleLoginWithProvider}
-                       onRegister={this.handleRegister}
+                       onRegister={this.handleRegister.bind(this)}
                        onRegisterWithProvider={this.handleRegisterWithProvider}
+                       registerFailed={errors.email}
                        disableLocal={this.state.disableLocal}
                        disableRegister={this.state.disableRegister}
                        disableRegisterProviders={this.state.disableRegisterProviders}
@@ -90,24 +98,19 @@ class RegisterForm extends Component {
   };
 
   handleRegister = content => {
-    alert(`Registering with content '${JSON.stringify(content)}'`);
-    console.log(content);
-    const payload = content
-    superagent
-      .post(APIPath + "/accounts/register")
-      .set("Content-Type", "application/json")
-      .send(payload)
-          .then(res => {
-              console.log("response is ", res)
-              // localStorage.setItem("token", res.body.token);
-              // localStorage.setItem("email" , res.body.email);
-              // this.props.onSuccessfulSignup();
-          })
-          .catch(err => {
-              console.log("Error response is", err.response);
-              // this.setState({error: err.response.body.error})
-              console.log("this.state is", this.state)
-          });
+    const payload = {
+      firstname : content['firstname'],
+      lastname : content['lastname'],
+      email: content['email'],
+      brasize: content['brasize'],
+      pantysize: content['pantysize'],
+      topsize: content['topsize'],
+      bottomsize: content['bottomsize'],
+      password1 : content['password'],
+      password2 : content['repeated_password']
+    };
+    this.setState({submitted: true});
+    this.props.dispatch(accountActions.register(payload))
   };
 
   handleRegisterWithProvider = providerId => {
@@ -115,4 +118,13 @@ class RegisterForm extends Component {
   };
 }
 
-export default withStyles(styles)(RegisterForm);
+function mapStateToProps(state) {
+  const { registering, errors } = state.registration;
+  console.log("Register Error:",state.registration);
+  return {
+    loading: registering,
+    errors: errors
+  };
+}
+
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(RegisterForm)));

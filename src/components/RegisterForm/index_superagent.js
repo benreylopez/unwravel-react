@@ -7,11 +7,11 @@ import {withStyles} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
-import LoginRegister from '../Signin';
-import Button from '@material-ui/core/Button';
+import LoginRegister from '../Register';
+import Button from '@material-ui/core/Button'
+import superagent from "superagent";
+import APIPath from '../Api';
 import { accountActions } from '../../_actions';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
 const styles = theme => ({
   root: {
@@ -24,30 +24,31 @@ const styles = theme => ({
   controls: {
     margin: [[theme.spacing.unit * 2, 0]],
     padding: theme.spacing.unit
-  },
-  
+  }
 });
 
-class SigninForm extends Component {
+class RegisterForm extends Component {
   state = {
     disableLocal: false,
     disableRegister: true,
-    disableRegisterProviders: true,
-    registerFailed: '',
-    submitted: false
+    disableRegisterProviders: true
   };
 
   render() {
-    const {classes, errors} = this.props;
-    console.log("ERRORS:",errors);
+    const {classes} = this.props;
+
     const header = (
         <div>
         <div className="row">
+            <div className="col-md-4 col-5" href={"/"}>
+
+                <a href="/"><img className="logo" src="/assets/image/logo.png" ></img></a>
+            </div>
             
         </div>
-        <div className="register_title" style={{marginTop:"50px"}}>
-            <p style={{fontSize: '30px'}}>
-                Log In
+        <div className="register_title">
+            <p>
+                Create Your Account
             </p>
         </div>
         </div>
@@ -56,19 +57,18 @@ class SigninForm extends Component {
 
     const footer = (
       <div className={classes.footer}>
-        <img className="foot_image float-right" src="/assets/image/Bitmap.png" style={{width:"40%"}}></img>
+        <img className="foot_image float-right" src="/assets/image/Bitmap.png"></img>
       </div>
     );
 
     return (
-      <div className={classes.root} style={{height: '500px'}}>
+      <div className={classes.root}>
         <CssBaseline/>
         <LoginRegister header={header} footer={footer}
                        onLogin={this.handleLogin}
                        onLoginWithProvider={this.handleLoginWithProvider}
-                       onRegister={this.handleRegister.bind(this)}
+                       onRegister={this.handleRegister}
                        onRegisterWithProvider={this.handleRegisterWithProvider}
-
                        disableLocal={this.state.disableLocal}
                        disableRegister={this.state.disableRegister}
                        disableRegisterProviders={this.state.disableRegisterProviders}
@@ -91,9 +91,35 @@ class SigninForm extends Component {
   };
 
   handleRegister = content => {
-    this.setState({ submitted: true });
-    const { dispatch } = this.props;
-    dispatch(accountActions.login(content['email'], content['password']));
+    
+    alert(`Registering with content '${JSON.stringify(content)}'`);
+    console.log(content);
+    const payload = {
+      firstname : content['firstname'],
+      lastname : content['lastname'],
+      email: content['email'],
+      brasize: content['brasize'],
+      pantysize: content['pantysize'],
+      topsize: content['topsize'],
+      bottomsize: content['bottomsize'],
+      password1 : content['password'],
+      password2 : content['repeated_password']
+    };
+    superagent
+      .post(APIPath + "/api/accounts/auth/register/")
+      .set("Content-Type", "application/json")
+      .send(payload)
+          .then(res => {
+              console.log("response is ", res)
+              // localStorage.setItem("token", res.body.token);
+              // localStorage.setItem("email" , res.body.email);
+              // this.props.onSuccessfulSignup();
+          })
+          .catch(err => {
+              console.log("Error response is", err.response);
+              // this.setState({error: err.response.body.error})
+              console.log("this.state is", this.state)
+          });
   };
 
   handleRegisterWithProvider = providerId => {
@@ -101,15 +127,4 @@ class SigninForm extends Component {
   };
 }
 
-function mapStateToProps(state) {
-  const { loggingIn, loggingError } = state.authentication;
-  const { alert } = state;
-  return {
-    loading: loggingIn,
-    errors: loggingError,
-    alert,
-  };
-}
-
-
-export default withRouter(connect(mapStateToProps)(withStyles(styles)(SigninForm)));
+export default withStyles(styles)(RegisterForm);

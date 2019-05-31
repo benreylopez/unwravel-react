@@ -231,9 +231,64 @@
   display: none !important;
 }
 
+.profile_logo p{
+  height: 21px;
+  font-family: Montserrat;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0.4636365px;
+  display: inline;
+}
+
+.profile_logo img {
+  margin: 0px;
+}
+
+.size_bar {
+  height: 84px;
+  border: solid 1px #7f7f7f;
+  padding: 10px;
+}
+
+.profile_logo .size{
+  width: 43px;
+  height: 43px;
+  background: #e9dff8;
+  padding: 5px;
+  margin-left: 10px;
+}
+.sidebar_button {
+  margin: auto;
+}
+.sidebar_button Button{
+  height: 94px;
+  width: 226px;
+  background: #e9dff8;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.3818184px;
+  text-transform: capitalize;
+  margin: 5px;
+}
+
+.size_bar_item {
+  margin: auto;
+}
+
+.mainProduct {
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
 .logo {
   width: 60%;
+}
+.profile_logo img{
+  width: 30%;
 }
 .header_title .createAccoSub{
   width: 251px;

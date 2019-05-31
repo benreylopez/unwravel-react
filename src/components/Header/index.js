@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -47,8 +47,12 @@ class Header extends  Component {
                 
             </div>
             <div className="col-md-3 middle col-5">
-                
-                <Button classes={{label: "btn rectangle login"}} href={"/frontend/login/"}>Login</Button>
+              <Link
+               to="/frontend/login/"
+               style={{textDecoration: 'inherit'}}
+              >
+                <Button classes={{label: "btn rectangle login"}}>Login</Button>
+              </Link>
             </div>
             <Modal
                 aria-labelledby="simple-modal-title"

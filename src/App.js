@@ -8,7 +8,8 @@ import SignupForm from './components/SignupForm';
 import RegisterForm from './components/RegisterForm';
 import SigninForm from './components/SigninForm';
 import LoginForm from './components/LoginForm';
-
+import BridePage from './components/BridePage';
+import ProductPage from './components/BridePage/ProductPage';
 import { Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from './_helpers';
@@ -31,11 +32,15 @@ class App extends Component {
           <Route
             exact
             path="/"
-            component={HomePage}
+            render={() => (
+              user
+                ? <Redirect to="/portfolio" />
+                : <HomePage />
+            )}
           />
           <Route
             path="/portfolio"
-            component={RegisterForm}
+            component={BridePage}
           />
           <Route
             path="/frontend/login"
@@ -45,10 +50,21 @@ class App extends Component {
             path="/frontend/register"
             component={RegisterForm}
           />
+          <Route
+            path="/bride/product_page"
+            component={ProductPage}
+          />
         </div>
       </Router>
     );
   }
 }
 
-export default connect()(App);
+function mapStateToProps(state) {
+  const { authentication } = state;
+  return {
+    user: authentication.user,
+  };
+}
+
+export default connect(mapStateToProps)(App);

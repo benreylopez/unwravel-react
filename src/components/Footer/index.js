@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles';
 
@@ -18,7 +18,12 @@ class Footer extends  Component {
     return (
         <div className="row footer-bar">
             <div className="col-md-4 col-5">
-                <a href="/"><img className="logo" src="/assets/image/logo.png"></img></a>
+                <Link
+                 to="/"
+                 style={{textDecoration: 'inherit'}}
+                >
+                  <img className="logo" src="/assets/image/logo.png" ></img>
+                </Link>
             </div>
             <div className="col-md-5 col-12 middle row">
                 <div className="col-sm-3 ">

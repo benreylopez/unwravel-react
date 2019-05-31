@@ -49,7 +49,7 @@ function register(user) {
 function me(user,) {
   let response = axios({
     method: 'get',
-    url: `${process.env.API_BASE_URL}/api/accounts/me/`,
+    url: APIPath + '/api/accounts/me/',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     data: user,
   })

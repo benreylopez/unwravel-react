@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
+import { Link, Redirect } from 'react-router-dom';
 import 'typeface-roboto';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {AppBar, Toolbar, Typography} from '@material-ui/core';
@@ -48,11 +49,14 @@ class RegisterForm extends Component {
     const header = (
         <div>
         <div className="row">
-            <div className="col-md-4 col-5" href={"/"}>
-
-                <a href="/"><img className="logo" src="/assets/image/logo.png" ></img></a>
+            <div className="col-md-4 col-5">
+                <Link
+                 to="/"
+                 style={{textDecoration: 'inherit'}}
+                >
+                  <img className="logo" src="/assets/image/logo.png" ></img>
+                </Link>
             </div>
-            
         </div>
         <div className="register_title">
             <p>Create Your Account</p>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { authHeader } from '../_helpers';
-import APIPath from '../components/Api'
+import APIPath from '../components/Api';
 const accountService = {
     login,
     logout,

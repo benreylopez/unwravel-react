@@ -230,7 +230,6 @@
 .mobile-based-item {
   display: none !important;
 }
-
 .profile_logo p{
   height: 21px;
   font-family: Montserrat;
@@ -284,6 +283,18 @@
 }
 
 @media screen and (max-width: 600px) {
+  .prologo{
+    width: 60%;
+  }
+  .prouser{
+    width:30%;
+  }
+  .userMark{
+    padding-right:15px!important;
+  }
+  .userName{
+    font-size:14px!important;
+  }
 .logo {
   width: 60%;
 }
@@ -362,10 +373,10 @@
   background-color: #e9dff8;
 }
 .Bigcontainer{
-  width: 80%;
+  width: 90%;
   margin:auto;
 }
-.username{
+.userName{
   /* Style for "Lindsey Pr" */
   width: 133px;
   height: 21px;
@@ -377,6 +388,49 @@
   display: inline;
   margin-right: 16px;
 }
-.marginauto{
-  margin:auto;
+.userMark{
+  margin-top:auto;
+  margin-bottom:auto;
+  text-align: right;
+  padding-right: 60px;
+}
+.MuiTypography-root-39{
+  margin:auto !important;
+  margin-left:0 !important;
+}
+.MuiFormControlLabel-root-5{
+  margin-left:0 !important;
+}
+
+.product-list {
+  margin-bottom: 59px;
+}
+.btnLearn{
+	width: 231px;
+	height: 42px;
+	border: 1px solid #7f7f7f;
+	margin:auto;
+	padding:5px;
+	cursor:pointer;
+}
+.labLearn{
+	/* Style for "Load more" */
+	width: 69px;
+	height: 17px;
+	color: #000000;
+	font-family: Montserrat;
+	font-size: 12px;
+	font-weight: 400;
+	letter-spacing: 0.33px;
+	margin-left:74px;
+}
+.viewProduct{
+	/* Style for "You’ve vie" */
+	width: 100%;
+	height: 20px;
+	color: #7f7f7f;
+	font-family: Montserrat;
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 0.44px;
 }

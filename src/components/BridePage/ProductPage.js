@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 import { withStyles } from '@material-ui/core/styles';
+
 import Modal from '@material-ui/core/Modal';
 import DialogContent from '@material-ui/core/DialogContent';
 
@@ -13,6 +14,9 @@ import Grid from '@material-ui/core/Grid';
 import { accountActions } from '../../_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import Checkbox from '@material-ui/core/Checkbox';
+import { FormControlLabel } from '@material-ui/core';
+import FormGroup from '@material-ui/core/FormGroup';
 
 const Styles = theme => ({
     login: {
@@ -30,80 +34,64 @@ const Styles = theme => ({
     
     },
 });
-
 class ProductPage extends  Component {
-  static defaultProp = {
-    user: { loggedIn: false, user: { key: null } },
-  }
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      setOpen: false
-    }
-  }
 
-  componentDidMount() {
-    const { user, dispatch } = this.props;
-    dispatch(accountActions.me(user));
-  }
+	static defaultProp = {
+		user: { loggedIn: false, user: { key: null } },
+	}
+	
+	constructor(props) {
+		super(props);
+		this.state = {
+			open: false,
+			setOpen: false,
+			loved:true,
+			bras:false,
+			panties:false,
+			lingerie:false
+		}
+	}
+
+	componentDidMount() {
+		const { user, dispatch } = this.props;
+		dispatch(accountActions.me(user));
+	}
+
+	handleChange = name => event => {
+		this.setState({[name]: event.target.checked});
+		console.log(this.state);
+	}
 
 
   render() {
-    const {classes, account} = this.props;
+	const {classes, account} = this.props;
+	const {loved, bras, panties, lingerie} = this.state;
     return (
-      <div>
+      <div className = "Bigcontainer">
         <div className="row">
-            <div className="col-md-4 col-5">
-                <img className="logo" src="/assets/image/logo.png"></img>
+            <div className="col-md-4">
+                <img src="/assets/image/logo.png"></img>
             </div>
             <div className="col-md-5 col-1">
                 
             </div>
-            <div className="col-md-3 middle col-5 profile_logo">
-                {account !== undefined && <p>{account.firstname} {account.lastname} </p>}
-                <img className="logo" src="/assets/image/profileicon.png"></img>
+            <div className="col-md-3 marginauto">
+                {account !== undefined && <p className="username">{account.firstname} {account.lastname} </p>}
+                <img src="/assets/image/profileicon.png"></img>
             </div>
         </div>
         <div className="row my-5">
-          <div className="col-md-1 col-12">
-          </div>
-          <div className="col-md-8 col-12">
-            <div className="size_bar row">
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Top Size:</p>
-                {account !== undefined && <p className="size">{account.topsize} </p>}
-              </div>
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Bottom Size:</p>
-                {account !== undefined && <p className="size">{account.bottomsize} </p>}
-              </div>
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Panty Size:</p>
-                {account !== undefined && <p className="size">{account.pantysize} </p>}
-              </div>
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Bra Size:</p>
-                {account !== undefined && <p className="size">{account.brasize} </p>}
-              </div>
-            </div>
-            <div className="mainProduct my-5">
-              <h2>Your registry is empty! Start adding gifts!</h2>
-            </div>
+          <div className="col-md-9 col-12">
 
           </div>
           <div className="col-md-3 col-12 sidebar_button middle">
-            <Button classes={{label:"add_friend"}} type="submit"
-                      >Add Friends 
-              <img style={{marginLeft: "20px"}} src="/assets/image/lingerie.png"></img>
-            </Button>
-
-            <Button classes={{label:"add_friend"}} type="submit"
-                      >Add Gifts 
-              <img style={{marginLeft: "20px"}} src="/assets/image/lingerie.png"></img>
-            </Button>
+            <p className="filters">FILTERS</p>
+			<FormGroup>
+			<FormControlLabel control={<Checkbox className = "" checked={loved} onChange={this.handleChange('loved')}/> } label="Loved"></FormControlLabel>
+			<FormControlLabel control={<Checkbox className = "" checked={bras} onChange={this.handleChange('bras')}/>} label="Bras"></FormControlLabel>
+			<FormControlLabel control={<Checkbox checked={panties} onChange={this.handleChange('panties')}/>} label="Panties"></FormControlLabel>
+			</FormGroup>
           </div>
-          
         </div>
       </div>
       );

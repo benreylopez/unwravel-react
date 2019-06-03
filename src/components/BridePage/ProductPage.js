@@ -11,6 +11,7 @@ import SigninForm from "../SigninForm"
 import Grid from '@material-ui/core/Grid';
 
 import { accountActions } from '../../_actions';
+import { portfolioService } from '../../_services';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -46,8 +47,13 @@ class ProductPage extends  Component {
   componentDidMount() {
     const { user, dispatch } = this.props;
     dispatch(accountActions.me(user));
+    portfolioService.list().then((response) => {
+      console.log("portfolios--:", response.data)
+      this.setState({
+        portfolios: response.data,
+      })
+    })
   }
-
 
   render() {
     const {classes, account} = this.props;

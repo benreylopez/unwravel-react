@@ -51,3 +51,11 @@ function loans(portfolioCode) {
   });
   return response;
 }
+
+function changeState(data) {
+  axios({
+    method: 'get',
+    url: APIPath + `/api/portfolios/`,
+    headers: { ...authHeader(), 'Content-Type': 'application/json' }
+  })
+}

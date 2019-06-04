@@ -283,6 +283,21 @@
 }
 
 @media screen and (max-width: 600px) {
+  .fEGiFI{
+    margin-bottom: 50px!important;
+    margin-top:30px!important;
+  }
+  .product-opac{
+    padding: 0 50px!important;
+    padding-top: 80vw!important;
+  }
+  .product-opac > p:first-child {
+    font-size: 14px!important;
+    margin-bottom: 8px;
+  }
+  .product-opac > p:nth-child(2) {
+    font-size: 20px!important;
+  }
   .prologo{
     width: 60%;
   }
@@ -295,35 +310,35 @@
   .userName{
     font-size:14px!important;
   }
-.logo {
-  width: 60%;
-}
-.profile_logo img{
-  width: 30%;
-}
-.header_title .createAccoSub{
-  width: 251px;
-}
+  .logo {
+    width: 60%;
+  }
+  .profile_logo img{
+    width: 30%;
+  }
+  .header_title .createAccoSub{
+    width: 251px;
+  }
 
-.register_title p {
-  font-size: 40px;
-}
-.header_title p {
-  font-size: 40px;
-}
+  .register_title p {
+    font-size: 40px;
+  }
+  .header_title p {
+    font-size: 40px;
+  }
 
-.foot_image {
-  width: 20%;
-  margin-bottom: 0px;
-}
+  .foot_image {
+    width: 20%;
+    margin-bottom: 0px;
+  }
 
-.web-based-item {
-  display: none !important;
-}
+  .web-based-item {
+    display: none !important;
+  }
 
-.mobile-based-item {
-  display: block !important;
-}
+  .mobile-based-item {
+    display: block !important;
+  }
 }
 
 
@@ -394,16 +409,22 @@
   text-align: right;
   padding-right: 60px;
 }
-.MuiTypography-root-39{
-  margin:auto !important;
-  margin-left:0 !important;
+.IAM{
+	margin:0 !important;
 }
-.MuiFormControlLabel-root-5{
+.Ifilters span{
+  margin:auto ; 
+  margin-left:0 ;
+}
+.Ifilters{
   margin-left:0 !important;
 }
 
 .product-list {
   margin-bottom: 59px;
+  position: relative;
+  cursor:pointer;
+
 }
 .btnLearn{
 	width: 231px;
@@ -433,4 +454,52 @@
 	font-size: 16px;
 	font-weight: 400;
 	letter-spacing: 0.44px;
+}
+.product-opac{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding: 0px 20px;
+  padding-top: 12vw;
+  text-align: center;
+  color: #fff;
+}
+.product-opac > p {
+  display: block;
+}
+.product-opac > p:first-child {
+  font-size: 1vw;
+  margin-bottom: 8px;
+  font-family: Montserrat;
+  font-weight: 400;
+  letter-spacing: 2.13px;
+  opacity: 0.8;
+}
+.product-opac > p:nth-child(2) {
+  font-size: 1.3vw;
+  font-family: "Montserrat Semi Bold";
+  font-weight: 600;
+  letter-spacing: 2.27px;
+}
+.product-like{
+  position: absolute;
+  left: 0px;
+  top: 48px;
+}
+.product-love {
+  position: absolute;
+  right: 21px;
+  top: 20px;
+}
+.product-info{
+  position:absolute;
+  
+}
+.fEGiFI{
+  margin:auto;
+  margin-top:250px;
 }

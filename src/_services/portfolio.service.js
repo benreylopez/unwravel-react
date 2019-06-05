@@ -7,6 +7,7 @@ const portfolioService = {
   list,
   detail,
   loans,
+  changeLOL
 };
 
 export default portfolioService;
@@ -52,10 +53,12 @@ function loans(portfolioCode) {
   return response;
 }
 
-function changeState(data) {
-  axios({
-    method: 'get',
-    url: APIPath + `/api/portfolios/`,
-    headers: { ...authHeader(), 'Content-Type': 'application/json' }
+function changeLOL(data) {
+  const response = axios({
+    method: 'post',
+    url: APIPath + `/api/portfolios/changeLOL`,
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    data: data
   })
+  return response
 }

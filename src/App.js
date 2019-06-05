@@ -10,6 +10,7 @@ import SigninForm from './components/SigninForm';
 import LoginForm from './components/LoginForm';
 import BridePage from './components/BridePage';
 import ProductPage from './components/BridePage/ProductPage';
+import DetailPage from './components/BridePage/DetailPage'
 import { Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from './_helpers';
@@ -53,6 +54,10 @@ class App extends Component {
           <Route
             path="/bride/product_page"
             component={ProductPage}
+          />
+          <Route
+            path="/bride/detail_page"
+            component={DetailPage}
           />
         </div>
       </Router>

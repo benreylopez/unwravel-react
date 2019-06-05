@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-
-
-
 import { accountActions } from '../../_actions';
 import { portfolioService } from '../../_services';
 import { connect } from 'react-redux';
@@ -141,12 +138,7 @@ class ProductPage extends  Component {
 	const {account} = this.props;
 	const {loved, bras, panties, lingerie} = this.state;
 	const {loading} = this.state;
-	// const childElements = this.state.selectedPT.map(function (i, index){
-	// 	return (
-	// 		<Photo photoUrl={i.product_imageurl[0]} key={index}/>
-	// 	)
-	// })
-	console.log("STATE",this.state);
+
 	return (
       <div className = "Bigcontainer">
 		

@@ -9,7 +9,6 @@ import ProfilePage from "./ProfilePage"
 import HeaderHome from "../HeaderHome"
 import FriendPage from "./FriendPage"
 import ProductPage from "./ProductPage"
-import PurchasePage from './PurchasePage'
 const Styles = {
     login: {
         width: "41.78px",
@@ -34,7 +33,6 @@ class BridePage extends  Component {
             <Route path="/portfolio/add_friend" component={FriendPage} />
             <Route path="/portfolio/add_gift" component={ProductPage} />
             <Route path="/portfolio/" component={ProfilePage} />
-            <Route path="/portfolio/purchase" component={PurchasePage} />
         </div>
       );
     }

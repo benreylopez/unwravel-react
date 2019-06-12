@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router';
 import { portfolioService } from '../../_services';
   
-class Photo extends React.Component{
+class GiftPhoto extends React.Component{
     
     constructor(props) {
         super(props)
         this.state = {
             hover: false,
-            lol: this.props.lolstate,
+            lol: this.props.info.lol,
         }
         this.toggleHover = this.toggleHover.bind(this);
         this.likeChange = this.likeChange.bind(this);
@@ -32,10 +32,11 @@ class Photo extends React.Component{
     onDetail() {
         this.props.history.push({
             pathname:'/bride/detail_page',
-            state: {lolstate:this.state.lol, info:this.props.info}
+            state: {lolstate:this.props.info.lol, info:this.props.info, is_gift:1}
         });
     }
     render(){
+        const lol = this.state.lol;
         return(
                 <Card className="product-list" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
                     <img src={this.props.info.product_imageurl[0]} style={{width:'100%'}}></img>
@@ -45,15 +46,10 @@ class Photo extends React.Component{
                         <p>{this.props.info.price}</p>
                     </div>
                     }
-
-                    {!this.state.hover && (this.state.lol === 1 ? <img className="product-like" src="/assets/image/ULike.png"></img>
-                    :(this.state.lol === 2 && <img className="product-love" src="/assets/image/Love.png"></img>))}
-
-                    {this.state.hover && (this.state.lol === 1 ? <img className="product-like" src="/assets/image/ULike.png" onClick ={() => this.likeChange(0)}></img>
-                                                                :<img className="product-like" src="/assets/image/Like.png" onClick ={() => this.likeChange(1)}></img>)}
-                    {this.state.hover && (this.state.lol === 2 ? <img className="product-love" src="/assets/image/Love.png" onClick ={() => this.loveChange(0)}></img>
+                    {!this.state.hover && (lol === 2 && <img className="product-love" src="/assets/image/Love.png"></img>)}
+                    {this.state.hover && (lol === 2 ? <img className="product-love" src="/assets/image/Love.png" onClick ={() => this.loveChange(0)}></img>
                                                                 :<img className="product-love" src="/assets/image/ULove.png" onClick ={() => this.loveChange(2)}></img>)}
-                    {this.state.hover && <Button className = "details" color="primary" onClick = {this.onDetail}>
+                    {this.state.hover && <Button className = "details" color="secondary" onClick = {this.onDetail}>
                         DETAILS > > >
                     </Button>}
                 </Card>
@@ -61,4 +57,4 @@ class Photo extends React.Component{
     }
 }
 
-export default withRouter(Photo);
+export default withRouter(GiftPhoto);

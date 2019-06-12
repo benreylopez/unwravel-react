@@ -3,9 +3,8 @@ import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button'
-import {portfolioService} from '../../_services';
-import BHeader from '../BHeader'
-
+import SHeader from '../Header/SHeader'
+import Footer from '../Footer'
 class DetailPage extends React.Component {
   constructor(props)
   {
@@ -19,8 +18,8 @@ class DetailPage extends React.Component {
     this.rightChange = this
       .rightChange
       .bind(this);
-    this.addGift = this
-      .addGift
+    this.buyProduct = this
+      .buyProduct
       .bind(this);
   }
   leftChange() {
@@ -37,13 +36,8 @@ class DetailPage extends React.Component {
     ind++;
     this.setState({index_img: ind})
   }
-  addGift() {
-    portfolioService
-      .addGift({uniq_id: this.props.location.state.info.uniq_id})
-      .then((response) => {
-		console.log("ADD GIFT RESPONSE:", response);
-		this.props.history.push('/portfolio');
-      })
+  buyProduct() {
+    window.open(this.props.location.state.info.pageurl)
   }
 
   render() {
@@ -52,7 +46,7 @@ class DetailPage extends React.Component {
     const {index_img} = this.state;
     return (
       <div className="Bigcontainer">
-        <BHeader/>
+        <SHeader/>
         <div className="row my-5">
           <div
             className="col-md-1 col-12"
@@ -73,9 +67,8 @@ class DetailPage extends React.Component {
             {lolstate === 1
               ? <img className="product-like" src="/assets/image/ULike.png"></img>
               : (lolstate === 2 && <img className="product-love" src="/assets/image/Love.png"></img>)}
-            {!is_gift
-              ? <Button className="pink-button" onClick={this.addGift}>Add Gift</Button>
-              : ''}
+            <Button className="pink-button" onClick={this.buyProduct}>Buy This</Button>
+
           </Card>
           <div
             className="col-md-1 col-12"
@@ -105,11 +98,11 @@ class DetailPage extends React.Component {
                   return <p className="product-size">{i}</p>
                 })
 }</div>
-            {/* color_thumbnail */}
             <p className="product-description">Description</p>
             <p>{info.description}</p>
           </div>
         </div>
+        <Footer/>
       </div>
     )
   }

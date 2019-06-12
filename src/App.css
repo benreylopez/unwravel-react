@@ -245,9 +245,8 @@
 }
 
 .size_bar {
-  height: 84px;
+  height: 100px;
   border: solid 1px #7f7f7f;
-  padding: 10px;
 }
 
 .profile_logo .size{
@@ -256,9 +255,6 @@
   background: #e9dff8;
   padding: 5px;
   margin-left: 10px;
-}
-.sidebar_button {
-  margin: auto;
 }
 .sidebar_button Button{
   height: 94px;
@@ -284,7 +280,7 @@
 
 @media screen and (max-width: 600px) {
   .detail-product1{
-    max-height: 50vh;
+    max-height: 35vh;
   }
   .detail-arrow{
     padding:0px!important;
@@ -361,7 +357,19 @@
   text-transform: uppercase;
   margin-bottom: 32px;
 }
-
+.filters-spec{
+  width: 96px;
+  height: 28px;
+  color: #000000;
+  font-family: "Montserrat Medium";
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  padding-top: 80px;
+  padding-bottom: 20px;
+}
 .filters-inactivate{
   height: 20px;
   color: #7f7f7f;
@@ -398,6 +406,12 @@
 .Bigcontainer{
   width: 90%;
   margin:auto;
+  min-height: 42vh;
+}
+.text-gift{
+  margin:auto;
+  margin-top:50px;
+  margin-bottom: 50px;
 }
 .userName{
   /* Style for "Lindsey Pr" */
@@ -533,8 +547,12 @@ button.details:focus{
 }
 .classFlex{
   display:flex;
+  flex-wrap: wrap;
 }
-
+.btn_friend{
+  float: right;
+  margin-right: 45px!important;
+}
 .product-container{
   margin:auto;
 }
@@ -619,4 +637,76 @@ button.details:focus{
   margin-right: 5px;
   margin-bottom: 10px;
   margin-left:-2px;
+}
+.pink-button{
+  height: 70px;
+  width: 8vw;
+  background: #e9dff8!important;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.3818184px;
+  text-transform: capitalize;
+  margin: 5px;
+  position: absolute!important;
+  right: 0px;
+  bottom: 0px;
+}
+.pinkButton{
+  height: 50px;
+  width: 160px;
+  background: #e9dff8!important;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.3818184px;
+  text-transform: capitalize;
+  margin-top: 40px!important;
+  display: flex!important;
+  margin-left: auto!important;
+  margin-right: auto!important;
+}
+.probtn-container{
+  margin:auto;
+}
+.pinkButton1{
+  height: 50px;
+  background: #e9dff8!important;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.3818184px;
+  text-transform: capitalize;
+  margin-top: 40px!important;
+}
+.inputEmail input{
+  height:2em;
+}
+.dropdown-toggle::after{
+  color:#fff;
+}
+.dropdown-toggle{
+  cursor: pointer;
+}
+.guest-container .footer-bar{
+  margin-top:0px!important;
+}
+.Bigcontainer .col-md-7{
+  background-image: none;
+}
+.class-input{
+  display:flex!important;
+  margin-bottom:10px!important;
+}
+button {
+  outline: none!important;
+}
+.delete-dialog{
+  width: 400px;
 }

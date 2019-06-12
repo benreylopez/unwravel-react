@@ -1,13 +1,21 @@
 import axios from 'axios';
 import { authHeader } from '../_helpers';
 import APIPath from '../components/Api';
-
+import cookie from 'react-cookies';
 const portfolioService = {
   create,
   list,
   detail,
   loans,
-  changeLOL
+  changeLOL,
+  addGift,
+  getGifts,
+  addFriend,
+  getBride,
+  getBrideList,
+  editProfile,
+  getFriends,
+  deleteFriend
 };
 
 export default portfolioService;
@@ -43,7 +51,14 @@ function detail(portfolioCode) {
   });
   return response;
 }
-
+function getGifts() {
+  const response = axios({
+    method: 'get',
+    url: APIPath + '/api/portfolios/getGifts',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+  })
+  return response;
+}
 function loans(portfolioCode) {
   const response = axios({
     method: 'get',
@@ -56,9 +71,79 @@ function loans(portfolioCode) {
 function changeLOL(data) {
   const response = axios({
     method: 'post',
-    url: APIPath + `/api/portfolios/changeLOL`,
+    url: APIPath + `/api/portfolios/changeLOL/`,
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     data: data
   })
   return response
+}
+
+function addGift(data) {
+  const response = axios({
+    method: 'post',
+    url: APIPath + '/api/portfolios/addGift/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    data: data
+  })
+  return response
+}
+
+function addFriend(data) {
+  const response = axios({
+    method: 'post',
+    url: APIPath + '/api/portfolios/addFriend/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    data: data
+  })
+  return response
+}
+
+function getBride(data) {
+  console.log("Get Friend",data);
+  const response = axios({
+    method: 'post',
+    url: APIPath + '/api/portfolios/isFriend/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json'},
+    data: data
+  })
+  return response
+}
+
+function getBrideList(data) {
+  const response = axios({
+    method: 'post',
+    url: APIPath + '/api/portfolios/getBride/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json'},
+    data: data
+  })
+  return response
+}
+
+function editProfile(data) {
+  const response = axios({
+    method: 'post',
+    url: APIPath + '/api/portfolios/editProfile/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json'},
+    data: data
+  })
+  return response
+}
+
+function getFriends() {
+  const response = axios({
+    method: 'get',
+    url: APIPath + '/api/portfolios/getFriends/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json'},
+  })
+  return response
+}
+
+function deleteFriend(data) {
+  const response = axios({
+    method: 'post',
+    url: APIPath + '/api/portfolios/deleteFriend/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json'},
+    data: data
+  })
+  return response  
 }

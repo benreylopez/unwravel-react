@@ -37,7 +37,7 @@ class HeaderHome extends  Component {
                   <Button classes={{label: "btn rectangle createAcco"}}>Create Account</Button>
                 </Link>
                 <Link
-                 to="/frontend/findBride/"
+                 to="/guest"
                  style={{textDecoration: 'inherit'}}
                 >
                   <Button classes={{label: "btn rectangle findBride"}}>Find the Bride</Button>

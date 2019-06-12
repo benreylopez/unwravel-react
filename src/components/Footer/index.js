@@ -16,7 +16,7 @@ class Footer extends  Component {
 
   render() {
     return (
-        <div className="row footer-bar">
+        <div className="classFlex footer-bar">
             <div className="col-md-4 col-5">
                 <Link
                  to="/"

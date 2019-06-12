@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link, Redirect} from 'react-router-dom';
 import Button from '@material-ui/core/Button'
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import DialogContent from '@material-ui/core/DialogContent';
 
@@ -10,121 +10,327 @@ import LoginForm from "../LoginForm"
 import SigninForm from "../SigninForm"
 import Grid from '@material-ui/core/Grid';
 
-import { accountActions } from '../../_actions';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import {accountActions} from '../../_actions';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
+import {portfolioService} from '../../_services';
+import GiftPhoto from './GiftPhoto'
+import Footer from '../Footer'
+import BHeader from '../BHeader'
+import Checkbox from '@material-ui/core/Checkbox';
+import {FormControlLabel} from '@material-ui/core';
+import FormGroup from '@material-ui/core/FormGroup';
 
 const Styles = theme => ({
-    login: {
-        width: "41.78px",
-        height: "17px",
-        font_family: "Montserrat",
-        font_size: "24px",
-        font_weight: 400,
-        line_height: "17px",
-        text_align: "center",
-        letter_spacing: "0.3818184px",
-    },
+  login: {
+    width: "41.78px",
+    height: "17px",
+    font_family: "Montserrat",
+    font_size: "24px",
+    font_weight: 400,
+    line_height: "17px",
+    text_align: "center",
+    letter_spacing: "0.3818184px"
+  },
 
-    paper: {
-    
-    },
+  paper: {}
 });
 
-class ProfilePage extends  Component {
+class ProfilePage extends Component {
   static defaultProp = {
-    user: { loggedIn: false, user: { key: null } },
+    user: {
+      loggedIn: false,
+      user: {
+        key: null
+      }
+    }
   }
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      setOpen: false
+      setOpen: false,
+      loved: false,
+      bras: false,
+      panties: false,
+      lingerie: false
     }
   }
 
   componentDidMount() {
-    const { user, dispatch } = this.props;
+
+    var jData = [];
+    const {user, dispatch} = this.props;
     dispatch(accountActions.me(user));
+    portfolioService
+      .getGifts()
+      .then((response) => {
+        const selectedPT1 = [];
+        const selectedPT2 = [];
+        const selectedPT3 = [];
+        const selectedPT4 = [];
+        let tCnt = 0;
+        jData = response.data;
+        jData.sort((a, b) => b.rank - a.rank);
+        jData.map(i => {
+          switch (tCnt % 4) {
+            case 0:
+              selectedPT1.push(i);
+              break;
+            case 1:
+              selectedPT2.push(i);
+              break;
+            case 2:
+              selectedPT3.push(i);
+              break;
+            case 3:
+              selectedPT4.push(i);
+              break;
+          }
+          tCnt++;
+        })
+        this.setState({
+          portfolios: jData,
+          gifts: response.data,
+          tCnt: tCnt,
+          selectedPT1: selectedPT1,
+          selectedPT2: selectedPT2,
+          selectedPT3: selectedPT3,
+          selectedPT4: selectedPT4
+        })
+      })
   }
-
-
+  handleChange = name => event => {
+    this.setState({[name]: event.target.checked});
+    if (name === "loved") {
+      this.state.loved = event.target.checked;
+    }
+    if (name === "bras") {
+      this.state.bras = event.target.checked;
+    }
+    if (name === "panties") {
+      this.state.panties = event.target.checked;
+    }
+    if (name === "lingerie") {
+      this.state.lingerie = event.target.checked;
+    }
+    this.setProducts();
+    console.log(this.state);
+  }
+  setProducts() {
+    const selectedPT1 = [];
+    const selectedPT2 = [];
+    const selectedPT3 = [];
+    const selectedPT4 = [];
+    var tCnt = 0;
+    this
+      .state
+      .portfolios
+      .map(i => {
+        if (((i.lol === 2 && this.state.loved === true) || (i.product_category === "Bras" && this.state.bras === true) || (i.product_category === "Panties" && this.state.panties === true) || (i.product_category === "Lingerie" && this.state.lingerie === true) || (this.state.loved === false && this.state.bras === false && this.state.panties === false && this.state.lingerie === false))) {
+          switch (tCnt % 4) {
+            case 0:
+              selectedPT1.push(i);
+              break;
+            case 1:
+              selectedPT2.push(i);
+              break;
+            case 2:
+              selectedPT3.push(i);
+              break;
+            case 3:
+              selectedPT4.push(i);
+              break;
+          }
+          tCnt++;
+        }
+      })
+    this.setState({tCnt: tCnt, selectedPT1: selectedPT1, selectedPT2: selectedPT2, selectedPT3: selectedPT3, selectedPT4: selectedPT4})
+  }
   render() {
-    const {classes, account} = this.props;
+    const {account} = this.props;
+    const {gifts} = this.state;
+    const {loved, bras, panties, lingerie} = this.state;
     return (
       <div>
-        <div className="row">
-            <div className="col-md-4 col-5">
-                <img className="logo" src="/assets/image/logo.png"></img>
-            </div>
-            <div className="col-md-5 col-1">
-                
-            </div>
-            <div className="col-md-3 middle col-5 profile_logo">
-                {account !== undefined && <p>{account.firstname} {account.lastname} </p>}
-                <img className="logo" src="/assets/image/profileicon.png"></img>
-            </div>
-        </div>
-        <div className="row my-5">
-          <div className="col-md-1 col-12">
-          </div>
-          <div className="col-md-8 col-12">
-            <div className="size_bar row">
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Top Size:</p>
-                {account !== undefined && <p className="size">{account.topsize} </p>}
+        <div className="Bigcontainer">
+          <BHeader></BHeader>
+          <div className="row my-5">
+            <div className="col-md-9 col-12">
+              <div className="size_bar row">
+                <div className="col-md-3 col-6 profile_logo size_bar_item">
+                  <p>Top Size:</p>
+                  {account !== undefined && <p className="size">{account.topsize}
+                  </p>}
+                </div>
+                <div className="col-md-3 col-6 profile_logo size_bar_item">
+                  <p>Bottom Size:</p>
+                  {account !== undefined && <p className="size">{account.bottomsize}
+                  </p>}
+                </div>
+                <div className="col-md-3 col-6 profile_logo size_bar_item">
+                  <p>Panty Size:</p>
+                  {account !== undefined && <p className="size">{account.pantysize}
+                  </p>}
+                </div>
+                <div className="col-md-3 col-6 profile_logo size_bar_item">
+                  <p>Bra Size:</p>
+                  {account !== undefined && <p className="size">{account.brasize}
+                  </p>}
+                </div>
               </div>
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Bottom Size:</p>
-                {account !== undefined && <p className="size">{account.bottomsize} </p>}
-              </div>
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Panty Size:</p>
-                {account !== undefined && <p className="size">{account.pantysize} </p>}
-              </div>
-              <div className="col-md-3 col-6 profile_logo size_bar_item">
-                <p>Bra Size:</p>
-                {account !== undefined && <p className="size">{account.brasize} </p>}
-              </div>
+              {gifts && !gifts.length && <div className="mainProduct my-5">
+                <h2>Your registry is empty! Start adding gifts!</h2>
+              </div>}
+              {gifts && gifts.length && <div className="row">
+                <div className="col-md-12 classFlex">
+                  <h2 className="text-gift">ITEMS YOU LOVED</h2>
+                </div>
+
+                <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT1
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+                <div
+                  className="col-md-3 col-sm-6 col-12"
+                  style={{
+                  marginTop: '104px'
+                }}>
+                  {this
+                    .state
+                    .selectedPT2
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+                <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT3
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+                <div
+                  className="col-md-3 col-sm-6 col-12"
+                  style={{
+                  marginTop: '104px'
+                }}>
+                  {this
+                    .state
+                    .selectedPT4
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+              </div>}
+
             </div>
-            <div className="mainProduct my-5">
-              <h2>Your registry is empty! Start adding gifts!</h2>
+            <div className="col-md-3 col-12 sidebar_button">
+				<div>
+              <Link
+                to="/bride/add_friend"
+                style={{
+                textDecoration: 'inherit'
+              }}>
+                <Button
+                  className='btn_friend'
+                  classes={{
+                  label: "add_friend"
+                }}
+                  style={{
+                  marginTop: '0px'
+                }}
+                  type="submit">Add Friends
+                  <img
+                    style={{
+                    marginLeft: "20px"
+                  }}
+                    src="/assets/image/lingerie.png"></img>
+                </Button>
+              </Link>
+              <Link
+                to="/bride/product_page"
+                style={{
+                textDecoration: 'inherit'
+              }}>
+                <Button
+                  className='btn_friend'
+                  classes={{
+                  label: "add_friend"
+                }}
+                  type="submit">Add Gifts
+                  <img
+                    style={{
+                    marginLeft: "20px"
+                  }}
+                    src="/assets/image/lingerie.png"></img>
+                </Button>
+              </Link>
+			  </div>
+              <div
+                style={{
+                padding: '0 60px',
+                marginTop: '190px'
+              }}>
+                <p className="filters-spec">FILTERS</p>
+                <FormGroup>
+                  <FormControlLabel
+                    className="Ifilters"
+                    control={< Checkbox className = "IAM" checked = {
+                    loved
+                  }
+                  onChange = {
+                    this.handleChange('loved')
+                  }
+                  style = {{color:'rgb(149, 126, 184)'}}/>}
+                    label="Loved"
+                    labelPlacement="start"></FormControlLabel>
+                  <FormControlLabel
+                    className="Ifilters"
+                    control={< Checkbox className = "IAM" checked = {
+                    bras
+                  }
+                  onChange = {
+                    this.handleChange('bras')
+                  }
+                  style = {{color:'rgb(149, 126, 184)'}}/>}
+                    label="Bras"
+                    labelPlacement="start"></FormControlLabel>
+                  <FormControlLabel
+                    className="Ifilters"
+                    control={< Checkbox className = "IAM" checked = {
+                    panties
+                  }
+                  onChange = {
+                    this.handleChange('panties')
+                  }
+                  style = {{color:'rgb(149, 126, 184)'}}/>}
+                    label="Panties"
+                    labelPlacement="start"></FormControlLabel>
+                  <FormControlLabel
+                    className="Ifilters"
+                    control={< Checkbox className = "IAM" checked = {
+                    lingerie
+                  }
+                  onChange = {
+                    this.handleChange('lingerie')
+                  }
+                  style = {{color:'rgb(149, 126, 184)'}}/>}
+                    label="Lingerie"
+                    labelPlacement="start"></FormControlLabel>
+                </FormGroup>
+              </div>
             </div>
 
           </div>
-          <div className="col-md-3 col-12 sidebar_button middle">
-            <Link
-             to="/bride/add_friend"
-             style={{textDecoration: 'inherit'}}
-            >
-              <Button classes={{label:"add_friend"}} type="submit"
-                        >Add Friends
-                <img style={{marginLeft: "20px"}} src="/assets/image/lingerie.png"></img>
-              </Button>
-            </Link>
-            <Link
-             to="/bride/product_page"
-             style={{textDecoration: 'inherit'}}
-            >
-              <Button classes={{label:"add_friend"}} type="submit"
-                      >Add Gifts 
-              <img style={{marginLeft: "20px"}} src="/assets/image/lingerie.png"></img>
-            </Button>
-            </Link>
-          </div>
-          
         </div>
+        <Footer></Footer>
       </div>
-      );
-    }
+    );
+  }
 }
 
 function mapStateToProps(state) {
-  const { authentication, account } = state;
-  console.log("user:  ", authentication.user);
+  const {account} = state;
   console.log("account:  ", account);
-  return { user: authentication.user, account: account.account};
+  return {account: account.account};
 }
-
 
 export default withRouter(connect(mapStateToProps)(withStyles(Styles)(ProfilePage)));

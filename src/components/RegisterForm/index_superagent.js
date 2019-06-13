@@ -40,9 +40,9 @@ class RegisterForm extends Component {
     const header = (
         <div>
         <div className="row">
-            <div className="col-md-4 col-5" href={"/"}>
+            <div className="col-md-4 col-5" href={"/home"}>
 
-                <a href="/"><img className="logo" src="/assets/image/logo.png" ></img></a>
+                <a href="/home"><img className="logo" src="/assets/image/logo.png" ></img></a>
             </div>
             
         </div>

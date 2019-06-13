@@ -51,7 +51,7 @@ class RegisterForm extends Component {
         <div className="row">
             <div className="col-md-4 col-5">
                 <Link
-                 to="/"
+                 to="/home"
                  style={{textDecoration: 'inherit'}}
                 >
                   <img className="logo" src="/assets/image/logo.png" ></img>

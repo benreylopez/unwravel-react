@@ -114,7 +114,7 @@ class GuestFeed extends Component {
         <div className="Bigcontainer">
           <div className="row">
             <div className="col-md-2 col-5">
-				<Link to='/'>
+				<Link to='/home'>
               		<img className="prologo" src="/assets/image/logo.png"></img>
 				</Link>
             </div>

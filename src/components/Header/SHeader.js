@@ -9,16 +9,12 @@ class SHeader extends Component {
     return (
       <div className="row">
         <div className="col-md-4 col-5">
-          <Link
-               to="/"
-               style={{textDecoration: 'inherit'}}
-              >
-          <img className="logo" src="/assets/image/logo.png"></img>
+          <Link to="/home">
+            <img className="logo" src="/assets/image/logo.png"></img>
           </Link>
         </div>
         <div className="col-md-5 col-1"></div>
-        <div className="col-md-3 middle col-5">
-        </div>
+        <div className="col-md-3 middle col-5"></div>
       </div>
     );
   }

@@ -56,12 +56,12 @@ class SigninForm extends Component {
 
     const footer = (
       <div className={classes.footer}>
-        <img className="foot_image float-right" src="/assets/image/Bitmap.png" style={{width:"40%"}}></img>
+        <img className="foot_image float-right" src="/assets/image/Bitmap.png" style={{width:"40%",marginRight: '-36px',marginBottom: '-71px'}}></img>
       </div>
     );
 
     return (
-      <div className={classes.root} style={{height: '500px'}}>
+      <div className='signinform'>
         <CssBaseline/>
         <LoginRegister header={header} footer={footer}
                        onLogin={this.handleLogin}

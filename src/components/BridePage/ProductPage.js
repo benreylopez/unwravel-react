@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {accountActions} from '../../_actions';
 import {portfolioService} from '../../_services';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
 import Checkbox from '@material-ui/core/Checkbox';
 import {FormControlLabel} from '@material-ui/core';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -224,4 +223,4 @@ class ProductPage extends Component {
   }
 }
 
-export default withRouter((ProductPage));
+export default ProductPage;

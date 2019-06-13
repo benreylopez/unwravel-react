@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+
 import {withStyles} from '@material-ui/core/styles';
 import Formsy from 'formsy-react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid'
 
+import {withRouter} from 'react-router';
 import PropTypes from 'prop-types';
 
 const styles = theme => ({
@@ -34,12 +36,15 @@ class MainBody extends Component {
 
   constructor(props) {
     super(props);
+    this.createAccount = this.createAccount.bind(this)
 
     this.state = {
       canSubmit: false
     }
   }
-
+  createAccount(){
+    this.props.history.push('/frontend/register');
+  }
   render() {
     const {
       classes,
@@ -102,7 +107,7 @@ class MainBody extends Component {
                     </div>
 
                     <div className="header_title">
-                        <Button classes={{label:"createAccoSub"}} type="submit"
+                        <Button classes={{label:"createAccoSub"}} onClick={this.createAccount}
                                 >Get Started Now!</Button>
                     </div>
                             
@@ -114,4 +119,4 @@ class MainBody extends Component {
 
 }
 
-export default withStyles(styles)(MainBody);
+export default withRouter(withStyles(styles)(MainBody));

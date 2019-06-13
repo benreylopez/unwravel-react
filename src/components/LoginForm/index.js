@@ -16,11 +16,13 @@ class LoginForm extends  Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true,
+      open: false,
       setOpen: false
     }
   }
-
+  handleClose(){
+    this.setState({open:false});
+  }
   render() {
     return (
         <div>
@@ -29,6 +31,7 @@ class LoginForm extends  Component {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={this.state.open}
+                onClose ={this.handleClose}
             >
               <DialogContent style={{margin:"auto", marginTop:"50px"}}>
                 <Grid container spacing={24}>

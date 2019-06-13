@@ -54,7 +54,7 @@ class BHeader extends React.Component {
     return (
       <div className="row">
         <div className="col-md-4 col-5">
-          <Link to="/">
+          <Link to="/portfolio">
             <img className="prologo" src="/assets/image/logo.png"></img>
           </Link>
         </div>

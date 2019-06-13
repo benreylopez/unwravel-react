@@ -279,6 +279,9 @@
 }
 
 @media screen and (max-width: 600px) {
+  .signinform{
+    width: 90%!important;
+  }
   .detail-product1{
     max-height: 35vh;
   }
@@ -710,3 +713,8 @@ button {
 .delete-dialog{
   width: 400px;
 }
+.signinform{
+  width: 30%;
+  margin: auto;
+  margin-top: 150px;
+} 

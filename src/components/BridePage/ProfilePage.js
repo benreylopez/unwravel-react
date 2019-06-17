@@ -179,10 +179,11 @@ class ProfilePage extends Component {
                   </p>}
                 </div>
               </div>
-              {gifts && !gifts.length && <div className="mainProduct my-5">
+              {gifts && (gifts.length === 0 ? 
+              (<div className="mainProduct my-5">
                 <h2>Your registry is empty! Start adding gifts!</h2>
-              </div>}
-              {gifts && gifts.length && <div className="row">
+              </div>)
+              :(<div className="row">
                 <div className="col-md-12 classFlex">
                   <h2 className="text-gift">ITEMS YOU LOVED</h2>
                 </div>
@@ -219,7 +220,7 @@ class ProfilePage extends Component {
                     .selectedPT4
                     .map((i, index) => <GiftPhoto info={i} key={index}/>)}
                 </div>
-              </div>}
+              </div>))}
 
             </div>
             <div className="col-md-3 col-12 sidebar_button">

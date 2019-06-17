@@ -12,21 +12,33 @@ class FeedPhoto extends React.Component{
             hover: false
         }
         this.toggleHover = this.toggleHover.bind(this);
-        this.likeChange = this.likeChange.bind(this);
-        this.loveChange = this.loveChange.bind(this);
+        this.lolChange = this.lolChange.bind(this);
         this.onDetail = this.onDetail.bind(this);
     }
     componentDidMount(){
         this.setState({lol:this.props.info.lol})
     }
-    likeChange(state) {
+    lolChange(state) {
+        if(this.state.lol === 2 && (state === 0 || state === 1))
+        {
+            portfolioService
+            .removeGift({uniq_id: this.props.info.uniq_id})
+            .then((response) => {
+              console.log("REMOVE GIFT RESPONSE:", response);
+            })     
+        }
+        if(state === 2)
+        {
+            portfolioService
+            .addGift({uniq_id: this.props.info.uniq_id})
+            .then((response) => {
+              console.log("ADD GIFT RESPONSE:", response);
+            })
+        }
         this.setState({lol: state});
+        this.props.onChangeLOL(this.props.photo_ind, state);
         portfolioService.changeLOL({uniq_id:this.props.info.uniq_id, lol:state})
         
-    }
-    loveChange(state) {
-        this.setState({lol: state});
-        portfolioService.changeLOL({uniq_id:this.props.info.uniq_id, lol:state})
     }
     toggleHover() {
         this.setState({hover: !this.state.hover});
@@ -52,10 +64,10 @@ class FeedPhoto extends React.Component{
                     {!this.state.hover && (lol === 1 ? <img className="product-like" src="/assets/image/ULike.png"></img>
                     :(lol === 2 && <img className="product-love" src="/assets/image/Love.png"></img>))}
 
-                    {this.state.hover && (lol === 1 ? <img className="product-like" src="/assets/image/ULike.png" onClick ={() => this.likeChange(0)}></img>
-                                                                :<img className="product-like" src="/assets/image/Like.png" onClick ={() => this.likeChange(1)}></img>)}
-                    {this.state.hover && (lol === 2 ? <img className="product-love" src="/assets/image/Love.png" onClick ={() => this.loveChange(0)}></img>
-                                                                :<img className="product-love" src="/assets/image/ULove.png" onClick ={() => this.loveChange(2)}></img>)}
+                    {this.state.hover && (lol === 1 ? <img className="product-like" src="/assets/image/ULike.png" onClick ={() => this.lolChange(0)}></img>
+                                                                :<img className="product-like" src="/assets/image/Like.png" onClick ={() => this.lolChange(1)}></img>)}
+                    {this.state.hover && (lol === 2 ? <img className="product-love" src="/assets/image/Love.png" onClick ={() => this.lolChange(0)}></img>
+                                                                :<img className="product-love" src="/assets/image/ULove.png" onClick ={() => this.lolChange(2)}></img>)}
                     {this.state.hover && <Button className = "details" color="secondary" onClick = {this.onDetail}>
                         DETAILS > > >
                     </Button>}

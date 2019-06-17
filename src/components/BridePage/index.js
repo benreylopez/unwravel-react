@@ -29,11 +29,7 @@ class BridePage extends  Component {
 
   render() {
     return (
-        <div>
-            <Route path="/portfolio/add_friend" component={FriendPage} />
-            <Route path="/portfolio/add_gift" component={ProductPage} />
-            <Route path="/portfolio/" component={ProfilePage} />
-        </div>
+      <ProfilePage/>
       );
     }
 }

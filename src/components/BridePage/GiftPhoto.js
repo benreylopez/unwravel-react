@@ -46,9 +46,6 @@ class GiftPhoto extends React.Component{
                         <p>{this.props.info.price}</p>
                     </div>
                     }
-                    {!this.state.hover && (lol === 2 && <img className="product-love" src="/assets/image/Love.png"></img>)}
-                    {this.state.hover && (lol === 2 ? <img className="product-love" src="/assets/image/Love.png" onClick ={() => this.loveChange(0)}></img>
-                                                                :<img className="product-love" src="/assets/image/ULove.png" onClick ={() => this.loveChange(2)}></img>)}
                     {this.state.hover && <Button className = "details" color="secondary" onClick = {this.onDetail}>
                         DETAILS > > >
                     </Button>}

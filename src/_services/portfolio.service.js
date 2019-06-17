@@ -9,6 +9,7 @@ const portfolioService = {
   loans,
   changeLOL,
   addGift,
+  removeGift,
   getGifts,
   addFriend,
   getBride,
@@ -82,6 +83,16 @@ function addGift(data) {
   const response = axios({
     method: 'post',
     url: APIPath + '/api/portfolios/addGift/',
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+    data: data
+  })
+  return response
+}
+
+function removeGift(data) {
+  const response = axios({
+    method: 'post',
+    url: APIPath + '/api/portfolios/removeGift/',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
     data: data
   })

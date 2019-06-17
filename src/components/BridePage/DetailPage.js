@@ -6,12 +6,15 @@ import Button from '@material-ui/core/Button'
 import {portfolioService} from '../../_services';
 import BHeader from '../BHeader'
 
+import DeleteIcon from "@material-ui/icons/Delete";
 class DetailPage extends React.Component {
   constructor(props)
   {
     super(props)
     this.state = {
-      index_img: 0
+      index_img: 0,
+	  lolstate: this.props.location.state.lolstate,
+	  clicked:0
     }
     this.leftChange = this
       .leftChange
@@ -22,6 +25,9 @@ class DetailPage extends React.Component {
     this.addGift = this
       .addGift
       .bind(this);
+    this.likeChange = this
+      .likeChange
+      .bind(this)
   }
   leftChange() {
     var ind = this.state.index_img;
@@ -41,53 +47,83 @@ class DetailPage extends React.Component {
     portfolioService
       .addGift({uniq_id: this.props.location.state.info.uniq_id})
       .then((response) => {
-		console.log("ADD GIFT RESPONSE:", response);
-		this.props.history.push('/portfolio');
+        console.log("ADD GIFT RESPONSE:", response);
       })
+  }
+  removeGift() {
+    portfolioService
+      .removeGift({uniq_id: this.props.location.state.info.uniq_id})
+      .then((response) => {
+        console.log("REMOVE GIFT RESPONSE:", response);
+      })
+  }
+  likeChange(ind) {
+    if (ind === 2) 
+      this.addGift();
+    if ((ind === 0 || ind === 1) && this.state.lolstate === 2) 
+      this.removeGift();
+    portfolioService.changeLOL({uniq_id: this.props.location.state.info.uniq_id, lol: ind})
+    this.setState({lolstate: ind})
+  }
+
+  onClick(index){
+	  console.log("adfads");
+	  this.setState({clicked:index, index_img:index})
+  }
+
+  onBack(){
+    this.props.history.go(-1);
   }
 
   render() {
-    const {lolstate, info, is_gift} = this.props.location.state;
-    const {account} = this.props;
+    const {info, is_gift} = this.props.location.state;
+    const {lolstate} = this.state;
     const {index_img} = this.state;
+    console.log(lolstate);
     return (
       <div className="Bigcontainer">
         <BHeader/>
-        <div className="row my-5">
-          <div
-            className="col-md-1 col-12"
-            style={{
-            display: 'flex'
-          }}>
-            <img
-              src='/assets/image/leftArrow.png'
-              className='detail-arrow'
-              onClick={this.leftChange}></img>
-          </div>
-          <Card
-            className="col-md-7 col-12"
-            style={{
-            display: 'flex'
-          }}>
+        <div className="row" style={{marginTop:'3rem'}}>
+			<div className="col-md-1 col-3">
+			{
+				info.product_imageurl.map((i, index) =>
+					(index === this.state.clicked) ?
+					<label className="label-active">
+						<img className='detail-img' src={i}/>
+					</label>:
+					<label className="label-inactive" onClick={this.onClick.bind(this,index)}>
+					 	<img className='detail-img' src={i} />
+					</label>
+				)
+			}
+			</div>
+          <Card className="col-md-7 col-9" style={{display: 'flex', marginBottom:'40px'}}>
             <img src={info.product_imageurl[index_img]} className="detail-product1"></img>
-            {lolstate === 1
-              ? <img className="product-like" src="/assets/image/ULike.png"></img>
-              : (lolstate === 2 && <img className="product-love" src="/assets/image/Love.png"></img>)}
-            {!is_gift
-              ? <Button className="pink-button" onClick={this.addGift}>Add Gift</Button>
-              : ''}
+            {!is_gift && (lolstate === 1
+              ? <img
+                  className="product-like"
+                  src="/assets/image/ULike.png"
+                  onClick
+                  ={() => this.likeChange(0)}></img>
+              : <img
+                className="product-like"
+                src="/assets/image/Like.png"
+                onClick
+                ={() => this.likeChange(1)}></img>)}
+            {!is_gift && (lolstate === 2
+              ? <img
+                  className="product-love"
+                  src="/assets/image/Love.png"
+                  onClick
+                  ={() => this.likeChange(0)}></img>
+              : <img
+                className="product-love"
+                src="/assets/image/ULove.png"
+                onClick
+                ={() => this.likeChange(2)}></img>)}
           </Card>
-          <div
-            className="col-md-1 col-12"
-            style={{
-            display: 'flex'
-          }}>
-            <img
-              src='/assets/image/rightArrow.png'
-              className='detail-arrow'
-              onClick={this.rightChange}></img>
-          </div>
           <div className="col-md-3 col-12 product-container">
+            <img style={{marginBottom:'30px',marginLeft:'-10px',cursor:'pointer'}} src="/assets/image/back1.png" onClick={this.onBack.bind(this)}></img>
             <p className="product-brand">{info.brand_name}</p>
             <p className="product-name">{info.product_name}</p>
             <p className="product-price">{info.price}</p>
@@ -99,12 +135,13 @@ class DetailPage extends React.Component {
             </div>
             <p className="product-size2">Size</p>
             <div className="classFlex product-size1">
-              {info
-                .available_size
-                .map(i => {
-                  return <p className="product-size">{i}</p>
+              	{info
+					.available_size
+					.map(i => {
+					return <p className="product-size">{i}</p>
                 })
-}</div>
+				}
+			</div>
             {/* color_thumbnail */}
             <p className="product-description">Description</p>
             <p>{info.description}</p>

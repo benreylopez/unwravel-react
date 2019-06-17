@@ -28,38 +28,15 @@ class ProductPage extends Component {
       selectedPT4: [],
       tCnt: 0
     }
+    this.onChangeLOL = this.onChangeLOL.bind(this);
   }
 
   componentDidMount() {
-    var jData = [];
     portfolioService
       .list()
       .then((response) => {
-        jData = response.data;
-        console.log(jData);
-        jData.sort((a, b) => b.rank - a.rank);
-        this.setState({portfolios: jData, loading: false})
-
-        const {selectedPT1, selectedPT2, selectedPT3, selectedPT4} = this.state;
-        var tCnt = 0;
-        jData.map((i) => {
-            switch (tCnt % 4) {
-              case 0:
-                selectedPT1.push(i);
-                break;
-              case 1:
-                selectedPT2.push(i);
-                break;
-              case 2:
-                selectedPT3.push(i);
-                break;
-              case 3:
-                selectedPT4.push(i);
-                break;
-            }
-            tCnt++;
-          })
-        this.setState({tCnt: tCnt, selectedPT1: selectedPT1, selectedPT2: selectedPT2, selectedPT3: selectedPT3, selectedPT4: selectedPT4})
+        this.setState({portfolios: response.data, loading: false})
+        this.setProducts();
       })
 
   }
@@ -78,14 +55,14 @@ class ProductPage extends Component {
       this.state.lingerie = event.target.checked;
     }
     this.setProducts();
-    console.log(this.state);
   }
   setProducts() {
     const selectedPT1 = [];
     const selectedPT2 = [];
     const selectedPT3 = [];
     const selectedPT4 = [];
-    var tCnt = 0;
+	var tCnt = 0;
+	this.state.portfolios.sort((a, b) => b.lol - a.lol);
     this
       .state
       .portfolios
@@ -110,6 +87,7 @@ class ProductPage extends Component {
       })
     this.setState({tCnt: tCnt, selectedPT1: selectedPT1, selectedPT2: selectedPT2, selectedPT3: selectedPT3, selectedPT4: selectedPT4})
   }
+  
   handleLearn() {
     const cnt = this.state.Cnt;
     this.setState({
@@ -118,10 +96,15 @@ class ProductPage extends Component {
     this.state.Cnt = cnt + 12;
     this.setProducts();
   }
+
+  onChangeLOL(index, lol) {
+	var temp = this.state.portfolios;
+	temp[index].lol = lol;
+  }
+
   render() {
     const {loved, bras, panties, lingerie} = this.state;
     const {loading} = this.state;
-
     return (
       <div className="Bigcontainer">
 
@@ -133,7 +116,7 @@ class ProductPage extends Component {
                 {this
                   .state
                   .selectedPT1
-                  .map((i, index) => <FeedPhoto info={i} key={uid(i)}/>)}
+                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index} info={i} key={uid(i)}/>)}
               </div>
               <div
                 className="col-md-3 col-sm-6 col-12"
@@ -143,13 +126,13 @@ class ProductPage extends Component {
                 {this
                   .state
                   .selectedPT2
-                  .map((i, index) => <FeedPhoto info={i} key={uid(i)}/>)}
+                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 1} info={i} key={uid(i)}/>)}
               </div>
               <div className="col-md-3 col-sm-6 col-12">
                 {this
                   .state
                   .selectedPT3
-                  .map((i, index) => <FeedPhoto info={i} key={uid(i)}/>)}
+                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 2} info={i} key={uid(i)}/>)}
               </div>
               <div
                 className="col-md-3 col-sm-6 col-12"
@@ -159,7 +142,7 @@ class ProductPage extends Component {
                 {this
                   .state
                   .selectedPT4
-                  .map((i, index) => <FeedPhoto info={i} key={uid(i)}/>)}
+                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 3} info={i} key={uid(i)}/>)}
               </div>
             </div>}
 

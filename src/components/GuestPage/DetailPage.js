@@ -10,7 +10,8 @@ class DetailPage extends React.Component {
   {
     super(props)
     this.state = {
-      index_img: 0
+	  index_img: 0,
+	  clicked:0
     }
     this.leftChange = this
       .leftChange
@@ -39,67 +40,71 @@ class DetailPage extends React.Component {
   buyProduct() {
     window.open(this.props.location.state.info.pageurl)
   }
+  onClick(index){
+	  this.setState({clicked:index, index_img:index})
+  }
 
+  onBack(){
+    this.props.history.go(-1);
+  }
   render() {
-    const {lolstate, info, is_gift} = this.props.location.state;
-    const {account} = this.props;
+    const {lolstate, info} = this.props.location.state;
     const {index_img} = this.state;
     return (
-      <div className="Bigcontainer">
+      <div>
         <SHeader/>
-        <div className="row my-5">
-          <div
-            className="col-md-1 col-12"
-            style={{
-            display: 'flex'
-          }}>
-            <img
-              src='/assets/image/leftArrow.png'
-              className='detail-arrow'
-              onClick={this.leftChange}></img>
-          </div>
-          <Card
-            className="col-md-7 col-12"
-            style={{
-            display: 'flex'
-          }}>
-            <img src={info.product_imageurl[index_img]} className="detail-product1"></img>
-            {lolstate === 1
-              ? <img className="product-like" src="/assets/image/ULike.png"></img>
-              : (lolstate === 2 && <img className="product-love" src="/assets/image/Love.png"></img>)}
-            <Button className="pink-button" onClick={this.buyProduct}>Buy This</Button>
-
-          </Card>
-          <div
-            className="col-md-1 col-12"
-            style={{
-            display: 'flex'
-          }}>
-            <img
-              src='/assets/image/rightArrow.png'
-              className='detail-arrow'
-              onClick={this.rightChange}></img>
-          </div>
-          <div className="col-md-3 col-12 product-container">
-            <p className="product-brand">{info.brand_name}</p>
-            <p className="product-name">{info.product_name}</p>
-            <p className="product-price">{info.price}</p>
-            <p className="product-color">Color</p>
-            <div className="classFlex">
-              <div className="product-thumb1">
-                <img className="product-thumb" src={info.color_thumbnail}></img>
-              </div>
-            </div>
-            <p className="product-size2">Size</p>
-            <div className="classFlex product-size1">
+        <div className="Bigcontainer">
+          <div className="row" style={{marginTop: '3rem'}}>
+            <div className="col-md-1 col-3">
               {info
-                .available_size
-                .map(i => {
-                  return <p className="product-size">{i}</p>
-                })
+                .product_imageurl
+                .map((i, index) => (index === this.state.clicked)
+                  ? <label className="label-active">
+                      <img className='detail-img' src={i}/>
+                    </label>
+                  : <label
+                    className="label-inactive"
+                    onClick={this
+                    .onClick
+                    .bind(this, index)}>
+                    <img className='detail-img' src={i}/>
+                  </label>)}
+            </div>
+
+            <Card
+              className="col-md-7 col-9"
+              style={{
+              display: 'flex',marginBottom:'40px'
+            }}>
+              <img src={info.product_imageurl[index_img]} className="detail-product1"></img>
+              {lolstate === 1
+                ? <img className="product-like" src="/assets/image/ULike.png"></img>
+                : (lolstate === 2 && <img className="product-love" src="/assets/image/Love.png"></img>)}
+              <Button className="pink-button" onClick={this.buyProduct}>Buy</Button>
+
+            </Card>
+            <div className="col-md-3 col-12 product-container">
+            <img style={{marginBottom:'30px',marginLeft:'-10px',cursor:'pointer'}} src="/assets/image/back1.png" onClick={this.onBack.bind(this)}></img>
+              <p className="product-brand">{info.brand_name}</p>
+              <p className="product-name">{info.product_name}</p>
+              <p className="product-price">{info.price}</p>
+              <p className="product-color">Color</p>
+              <div className="classFlex">
+                <div className="product-thumb1">
+                  <img className="product-thumb" src={info.color_thumbnail}></img>
+                </div>
+              </div>
+              <p className="product-size2">Size</p>
+              <div className="classFlex product-size1">
+                {info
+                  .available_size
+                  .map(i => {
+                    return <p className="product-size">{i}</p>
+                  })
 }</div>
-            <p className="product-description">Description</p>
-            <p>{info.description}</p>
+              <p className="product-description">Description</p>
+              <p>{info.description}</p>
+            </div>
           </div>
         </div>
         <Footer/>

@@ -35,7 +35,7 @@ class GuestFeed extends Component {
       let tCnt = 0;
       let jData = response.data;
       console.log(jData);
-      jData.sort((a, b) => b.rank - a.rank);
+      jData.sort((a, b) => b.lol - a.lol);
       jData.map(i => {
         switch (tCnt % 4) {
           case 0:
@@ -115,7 +115,7 @@ class GuestFeed extends Component {
           <div className="row">
             <div className="col-md-2 col-5">
 				<Link to='/home'>
-              		<img className="prologo" src="/assets/image/logo.png"></img>
+              		<img className="logo" src="/assets/image/logo.png"></img>
 				</Link>
             </div>
             <div className="col-md-7 col-7 row">

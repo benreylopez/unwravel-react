@@ -7,7 +7,7 @@ class SHeader extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row" style={{marginRight:'0px'}}>
         <div className="col-md-4 col-5">
           <Link to="/home">
             <img className="logo" src="/assets/image/logo.png"></img>

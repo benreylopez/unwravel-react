@@ -49,7 +49,7 @@ class Header extends Component {
     const {classes} = this.props;
     return (
       <div>
-        <div className="row">
+        <div className="row" style={{marginRight:'0px'}}>
           <div className="col-md-4 col-5">
             <Link to='/home'>
             <img className="logo" src="/assets/image/logo.png"></img></Link>
@@ -60,6 +60,7 @@ class Header extends Component {
               classes={{
               label: "btn rectangle login"
             }}
+            style={{marginTop:'26px'}}
               onClick={this.handleOpen}>Login</Button>
           </div>
 

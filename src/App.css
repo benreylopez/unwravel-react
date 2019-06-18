@@ -175,6 +175,7 @@
 
 .foot_image {
   margin-bottom: -150px;
+  margin-right: -50px;
 }
 
 .main-content {
@@ -280,7 +281,7 @@
 
 @media screen and (max-width: 600px) {
   .product-love {
-    right:0px!important;
+    right:3px!important;
   }
   .product-like{
     left:0px!important;
@@ -416,6 +417,7 @@
   width: 90%;
   margin:auto;
   min-height: 42vh;
+  padding-top:20px;
 }
 .text-gift{
   margin:auto;
@@ -649,6 +651,9 @@ button.details:focus{
   margin-right: 5px;
   margin-bottom: 10px;
   margin-left:-2px;
+}
+.MuiGrid-item{
+  padding-right: 35px;
 }
 .pink-button{
   height: 50px;

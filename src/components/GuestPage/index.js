@@ -92,8 +92,8 @@ class GuestPage extends Component {
                     type="email"
                     onChange={this.emailChange2}/>
                 </FormControl>
-                {this.state.error && <p>{this.state.error}</p>}
-                <Button className='pinkButton' type="submit">Find
+                {this.state.error && <p style={{color:'#f00'}}>{this.state.error}</p>}
+                <Button className='pinkButton' type="submit" style={{marginBottom:'40px'}}>Find
                 </Button>
               </form>
             </div>

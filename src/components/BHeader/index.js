@@ -18,6 +18,9 @@ class BHeader extends React.Component {
     this.handleFriends = this
       .handleFriends
       .bind(this)
+      this.settings = this
+        .settings
+        .bind(this)
   }
 
   componentDidMount() {
@@ -28,12 +31,8 @@ class BHeader extends React.Component {
     this
       .props
       .history
-      .push({
-        pathname: '/bride/edit_profile',
-        state: {
-          account: this.props.account
-        }
-      });
+      .push('/portfolio');
+    
   }
   handleFriends() {
     this
@@ -47,6 +46,17 @@ class BHeader extends React.Component {
       .props
       .history
       .push('/home');
+  }
+  settings() {
+    this
+      .props
+      .history
+      .push({
+        pathname: '/bride/edit_profile',
+        state: {
+          account: this.props.account
+        }
+      });
   }
 
   render() {
@@ -68,6 +78,7 @@ class BHeader extends React.Component {
           <div class="dropdown-menu dropdown-menu-right">
             <button class="dropdown-item" type="button" onClick={this.handleProfile}>Profile</button>
             <button class="dropdown-item" type="button" onClick={this.handleFriends}>Friends</button>
+            <button class="dropdown-item" type="button" onClick={this.settings}>Settings</button>
             <button class="dropdown-item" type="button" onClick={this.signOut}>Sign Out</button>
           </div>
         </div>

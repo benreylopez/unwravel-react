@@ -119,10 +119,7 @@ class ProductPage extends Component {
                   .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index} info={i} key={uid(i)}/>)}
               </div>
               <div
-                className="col-md-3 col-sm-6 col-12"
-                style={{
-                marginTop: '104px'
-              }}>
+                className="col-md-3 col-sm-6 col-12 photomargin">
                 {this
                   .state
                   .selectedPT2
@@ -135,10 +132,7 @@ class ProductPage extends Component {
                   .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 2} info={i} key={uid(i)}/>)}
               </div>
               <div
-                className="col-md-3 col-sm-6 col-12"
-                style={{
-                marginTop: '104px'
-              }}>
+                className="col-md-3 col-sm-6 col-12 photomargin">
                 {this
                   .state
                   .selectedPT4

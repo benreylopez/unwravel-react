@@ -195,10 +195,7 @@ class ProfilePage extends Component {
                     .map((i, index) => <GiftPhoto info={i} key={index}/>)}
                 </div>
                 <div
-                  className="col-md-3 col-sm-6 col-12"
-                  style={{
-                  marginTop: '104px'
-                }}>
+                  className="col-md-3 col-sm-6 col-12 photomargin">
                   {this
                     .state
                     .selectedPT2
@@ -211,10 +208,7 @@ class ProfilePage extends Component {
                     .map((i, index) => <GiftPhoto info={i} key={index}/>)}
                 </div>
                 <div
-                  className="col-md-3 col-sm-6 col-12"
-                  style={{
-                  marginTop: '104px'
-                }}>
+                  className="col-md-3 col-sm-6 col-12 photomargin">
                   {this
                     .state
                     .selectedPT4
@@ -224,7 +218,7 @@ class ProfilePage extends Component {
 
             </div>
             <div className="col-md-3 col-12 sidebar_button">
-				<div>
+				<div className="buttonmargin">
               <Link
                 to="/bride/add_friend"
                 style={{

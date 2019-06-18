@@ -274,14 +274,25 @@
 .size_bar_item {
   margin: auto;
 }
-
+.photomargin{
+  margin-top: 104px;
+}
 .mainProduct {
   text-align: center;
 }
 
 @media screen and (max-width: 600px) {
+  .foot_image{
+    margin-right: -15px;
+  }
+  .buttonmargin{
+    margin-top: 30px;
+  }
+  .photomargin{
+    margin-top: 0px;
+  }
   .product-love {
-    right:3px!important;
+    right:6px!important;
   }
   .product-like{
     left:0px!important;

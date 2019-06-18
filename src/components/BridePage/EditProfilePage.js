@@ -116,7 +116,8 @@ class EditProfilePage extends Component {
       topsize: topsize
     })
       .then((response) => {
-        // if(response.status === 200)     this.props.history
+        if(response.status === 200)
+          this.props.history.push('/portfolio')
       })
 
   }

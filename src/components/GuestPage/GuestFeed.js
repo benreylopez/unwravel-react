@@ -162,10 +162,7 @@ class GuestFeed extends Component {
                     .map((i, index) => <Photo info={i} key={index} is_gift={true}/>)}
                 </div>
                 <div
-                  className="col-md-3 col-sm-6 col-12"
-                  style={{
-                  marginTop: '104px'
-                }}>
+                  className="col-md-3 col-sm-6 col-12 photomargin">
                   {this
                     .state
                     .selectedPT2
@@ -178,10 +175,7 @@ class GuestFeed extends Component {
                     .map((i, index) => <Photo info={i} key={index} is_gift={true}/>)}
                 </div>
                 <div
-                  className="col-md-3 col-sm-6 col-12"
-                  style={{
-                  marginTop: '104px'
-                }}>
+                  className="col-md-3 col-sm-6 col-12 photomargin">
                   {this
                     .state
                     .selectedPT4

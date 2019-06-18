@@ -284,6 +284,7 @@
 @media screen and (max-width: 600px) {
   .foot_image{
     margin-right: -15px;
+    margin-bottom: -5px;
   }
   .buttonmargin{
     margin-top: 30px;
@@ -354,7 +355,6 @@
 
   .foot_image {
     width: 20%;
-    margin-bottom: 0px;
   }
 
   .web-based-item {

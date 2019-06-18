@@ -49,7 +49,6 @@ class Photo extends React.Component {
 }
 
         {lol === 2 && <img className="product-love" src="/assets/image/Love.png"></img>}
-        {lol === 1 && <img className="product-like" src="/assets/image/ULike.png"></img>}
         {this.state.hover && <Button className="details" color="secondary" onClick={this.onDetail}>
           DETAILS > > >
         </Button>}

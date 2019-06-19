@@ -7,10 +7,7 @@ const initialState = user ? { loggedIn: true, user } : {};
 const authenticationReducer = (state = initialState, action) => {
   switch (action.type) {
     case accountConstants.LOGIN_REQUEST:
-      return {
-        loggingIn: true,
-        user: action.user,
-      };
+      return { };
     case accountConstants.LOGIN_SUCCESS:
       return {
         loggedIn: true,

@@ -98,6 +98,7 @@ class GuestPage extends Component {
               </form>
             </div>
             <div className="col-md-4"></div>
+            
           </div>
         </div>
         <Footer></Footer>

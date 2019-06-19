@@ -38,20 +38,13 @@ class SigninForm extends Component {
   };
 
   render() {
-    const {classes, errors} = this.props;
-    console.log("ERRORS:",errors);
+    const {classes} = this.props;
     const header = (
-        <div>
-        <div className="row">
-            
-        </div>
         <div className="register_title" style={{marginTop:"50px"}}>
             <p style={{fontSize: '30px'}}>
                 Log In
             </p>
         </div>
-        </div>
-        
     );
 
     const footer = (
@@ -101,15 +94,9 @@ class SigninForm extends Component {
   };
 }
 
-function mapStateToProps(state) {
-  const { loggingIn, loggingError } = state.authentication;
-  const { alert } = state;
-  return {
-    loading: loggingIn,
-    errors: loggingError,
-    alert,
-  };
-}
 
+function mapStateToProps(state) {
+  
+}
 
 export default withRouter(connect(mapStateToProps)(withStyles(styles)(SigninForm)));

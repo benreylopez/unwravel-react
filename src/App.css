@@ -282,6 +282,16 @@
 }
 
 @media screen and (max-width: 600px) {
+  .mobile-responsive{
+    display:block!important;
+  }
+  .desktop-responsive{
+    display:none!important;
+  }
+  .thankyou_text{
+    padding:0 30px;
+    margin-top: 80px!important;
+  }
   .foot_image{
     margin-right: -15px;
     margin-bottom: -5px;
@@ -314,15 +324,18 @@
     margin-top:30px!important;
   }
   .product-opac{
-    padding: 0 50px!important;
+    padding: 0px !important;
     padding-top: 80vw!important;
   }
   .product-opac > p:first-child {
-    font-size: 14px!important;
+    font-size: 20px!important;
     margin-bottom: 8px;
+    width: 100%;
+    padding: 0 10px!important;
   }
   .product-opac > p:nth-child(2) {
     font-size: 20px!important;
+    margin-left: calc(50% - 32px)!important;
   }
   .prologo{
     width: 60%;
@@ -365,7 +378,6 @@
     display: block !important;
   }
 }
-
 
 .filters{
   width: 96px;
@@ -508,7 +520,6 @@
   left: 0;
 
   padding: 0px 20px;
-  padding-top: 12vw;
   text-align: center;
   color: #fff;
 }
@@ -522,12 +533,18 @@
   font-weight: 400;
   letter-spacing: 2.13px;
   opacity: 0.8;
+  position: absolute;
+  bottom: 55px;
 }
 .product-opac > p:nth-child(2) {
   font-size: 1.3vw;
   font-family: "Montserrat Semi Bold";
   font-weight: 600;
   letter-spacing: 2.27px;
+  position: absolute;
+  bottom: 15px;
+  margin-left: calc(50% - 53px);
+  
 }
 .product-like{
   position: absolute;
@@ -589,6 +606,7 @@ button.details:focus{
   letter-spacing: .2em;
   text-transform: uppercase;
   font-weight: 400;
+  margin-top: 40px
 }
 .product-name{
   font-family: BentonSansLight,Helvetica,Arial,sans-serif;
@@ -800,4 +818,12 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
+}
+.thankyou_text{
+  text-align: center;
+  margin-top: 150px;
+  font-size: 20px;
+}
+.mobile-responsive{
+  display: none;
 }

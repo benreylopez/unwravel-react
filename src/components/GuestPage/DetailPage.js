@@ -48,7 +48,7 @@ class DetailPage extends React.Component {
     this.props.history.go(-1);
   }
   render() {
-    const {lolstate, info} = this.props.location.state;
+    const {lolstate, info, account} = this.props.location.state;
     const {index_img} = this.state;
     return (
       <div>
@@ -84,7 +84,10 @@ class DetailPage extends React.Component {
 
             </Card>
             <div className="col-md-3 col-12 product-container">
-            <img style={{marginBottom:'30px',marginLeft:'-10px',cursor:'pointer'}} src="/assets/image/back1.png" onClick={this.onBack.bind(this)}></img>
+              <div  onClick={this.onBack.bind(this)} style={{cursor:'pointer'}}>
+              <img style={{marginLeft:'-10px',marginTop:'-1px'}} src="/assets/image/back1.png"></img>
+              <p style={{display:'inline', fontSize:'14px'}}>Back to Browsing</p>
+              </div>
               <p className="product-brand">{info.brand_name}</p>
               <p className="product-name">{info.product_name}</p>
               <p className="product-price">{info.price}</p>
@@ -96,12 +99,12 @@ class DetailPage extends React.Component {
               </div>
               <p className="product-size2">Size</p>
               <div className="classFlex product-size1">
-                {info
-                  .available_size
-                  .map(i => {
-                    return <p className="product-size">{i}</p>
-                  })
-}</div>
+                {
+                  info.product_category === 'Bras' ? <p className="product-size">{account.brasize}</p>:
+                  info.product_category === 'Panties' ? <p className="product-size">{account.pantysize}</p>:
+                  info.product_category === 'Lingerie' ? <p className="product-size">{account.topsize}</p>:''
+                }
+              </div>
               <p className="product-description">Description</p>
               <p>{info.description}</p>
             </div>

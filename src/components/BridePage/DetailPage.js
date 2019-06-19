@@ -123,7 +123,10 @@ class DetailPage extends React.Component {
                 ={() => this.likeChange(2)}></img>)}
           </Card>
           <div className="col-md-3 col-12 product-container">
-            <img style={{marginBottom:'30px',marginLeft:'-10px',cursor:'pointer'}} src="/assets/image/back1.png" onClick={this.onBack.bind(this)}></img>
+            <div  onClick={this.onBack.bind(this)} style={{cursor:'pointer'}}>
+            <img style={{marginLeft:'-10px',marginTop:'-1px'}} src="/assets/image/back1.png"></img>
+            <p style={{display:'inline', fontSize:'14px'}}>Back to Browsing</p>
+            </div>
             <p className="product-brand">{info.brand_name}</p>
             <p className="product-name">{info.product_name}</p>
             <p className="product-price">{info.price}</p>

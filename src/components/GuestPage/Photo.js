@@ -26,7 +26,8 @@ class Photo extends React.Component {
         pathname: '/guest_detail',
         state: {
           lolstate: this.props.info.lol,
-          info: this.props.info
+          info: this.props.info,
+          account: this.props.account
         }
       });
   }
@@ -36,7 +37,8 @@ class Photo extends React.Component {
       <Card
         className="product-list"
         onMouseEnter={this.toggleHover}
-        onMouseLeave={this.toggleHover}>
+        onMouseLeave={this.toggleHover}
+        >
         <img
           src={this.props.info.product_imageurl[0]}
           style={{

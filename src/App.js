@@ -16,6 +16,7 @@ import GuestPage from './components/GuestPage'
 import GuestFeed from './components/GuestPage/GuestFeed'
 import GuestDetail from './components/GuestPage/DetailPage'
 import EditProfilePage from './components/BridePage/EditProfilePage'
+import ThankYouPage from './components/ThankYouPage'
 import {Router, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {history} from './_helpers';
@@ -48,6 +49,7 @@ class App extends Component {
           <Route path='/guest_feed' component={GuestFeed}/>
           <Route path='/guest_detail' component={GuestDetail}/>
           <Route path="/frontend/register" component={RegisterForm}/>
+          <Route path="/frontend/thankyou" component={ThankYouPage}/>
           <Route path="/bride/product_page" component={ProductPage}/>
           <Route path="/bride/detail_page" component={DetailPage}/>
           <Route path="/bride/add_friend" component={FriendPage}/>
@@ -64,6 +66,7 @@ class App extends Component {
 function mapStateToProps(state) {
   const {authentication} = state;
   return {user: authentication.user};
+  
 }
 
 export default connect(mapStateToProps)(App);

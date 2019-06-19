@@ -47,10 +47,11 @@ function register(user) {
       .then(
         (response) => {
           const userData = response.data;
-          history.push('/frontend/login');
           // window.location.reload(true);
           dispatch(alertActions.success('In a few moments you\'ll receive an email from us. Please press the link provided, and that will tell us, that it\'s really your email and not an impostor.'));
           dispatch(success(userData));
+          history.push('/frontend/thankyou');
+          return 'success';
         },
         (error) => {
           dispatch(failure(error.response.data));

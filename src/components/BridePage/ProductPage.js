@@ -112,31 +112,41 @@ class ProductPage extends Component {
         <div className="row my-5">
           <div className="col-md-9 col-12">
             <FlapperSpinner size={50} color="rgb(149, 126, 184)" loading={loading}/> {!loading && <div className="row">
-              <div className="col-md-3 col-sm-6 col-12">
-                {this
-                  .state
-                  .selectedPT1
-                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index} info={i} key={uid(i)}/>)}
+              <div className='desktop-responsive row'>
+                <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT1
+                    .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index} info={i} key={uid(i)}/>)}
+                </div>
+                <div
+                  className="col-md-3 col-sm-6 col-12 photomargin">
+                  {this
+                    .state
+                    .selectedPT2
+                    .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 1} info={i} key={uid(i)}/>)}
+                </div>
+                <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT3
+                    .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 2} info={i} key={uid(i)}/>)}
+                </div>
+                <div
+                  className="col-md-3 col-sm-6 col-12 photomargin">
+                  {this
+                    .state
+                    .selectedPT4
+                    .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 3} info={i} key={uid(i)}/>)}
+                </div>
               </div>
-              <div
-                className="col-md-3 col-sm-6 col-12 photomargin">
+              <div className='mobile-responsive'>
+                <div className="col-12">
                 {this
                   .state
-                  .selectedPT2
-                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 1} info={i} key={uid(i)}/>)}
-              </div>
-              <div className="col-md-3 col-sm-6 col-12">
-                {this
-                  .state
-                  .selectedPT3
-                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 2} info={i} key={uid(i)}/>)}
-              </div>
-              <div
-                className="col-md-3 col-sm-6 col-12 photomargin">
-                {this
-                  .state
-                  .selectedPT4
-                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {4 * index + 3} info={i} key={uid(i)}/>)}
+                  .portfolios
+                  .map((i, index) => <FeedPhoto onChangeLOL={this.onChangeLOL} photo_ind= {index} info={i} key={uid(i)}/>)}
+                </div>
               </div>
             </div>}
 

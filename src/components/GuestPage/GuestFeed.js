@@ -154,33 +154,42 @@ class GuestFeed extends Component {
                 <div className="col-md-12 classFlex">
                   <h2 className="text-gift"></h2>
                 </div>
-
-                <div className="col-md-3 col-sm-6 col-12">
-                  {this
-                    .state
-                    .selectedPT1
-                    .map((i, index) => <Photo info={i} key={index} is_gift={true}/>)}
-                </div>
-                <div
-                  className="col-md-3 col-sm-6 col-12 photomargin">
-                  {this
-                    .state
-                    .selectedPT2
-                    .map((i, index) => <Photo info={i} key={index} is_gift={true}/>)}
-                </div>
-                <div className="col-md-3 col-sm-6 col-12">
-                  {this
-                    .state
-                    .selectedPT3
-                    .map((i, index) => <Photo info={i} key={index} is_gift={true}/>)}
-                </div>
-                <div
-                  className="col-md-3 col-sm-6 col-12 photomargin">
-                  {this
-                    .state
-                    .selectedPT4
-                    .map((i, index) => <Photo info={i} key={index} is_gift={true}/>)}
-                </div>
+				<div className="desktop-responsive row">
+					<div className="col-md-3 col-sm-6 col-12">
+					{this
+						.state
+						.selectedPT1
+						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+					</div>
+					<div
+					className="col-md-3 col-sm-6 col-12 photomargin">
+					{this
+						.state
+						.selectedPT2
+						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+					</div>
+					<div className="col-md-3 col-sm-6 col-12">
+					{this
+						.state
+						.selectedPT3
+						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+					</div>
+					<div
+					className="col-md-3 col-sm-6 col-12 photomargin">
+					{this
+						.state
+						.selectedPT4
+						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+					</div>
+				</div>
+				<div className='mobile-responsive'>
+					<div className="col-12">
+					{this
+						.state
+						.portfolios
+						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+					</div>
+				</div>
               </div>}
 
             </div>

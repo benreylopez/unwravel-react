@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import Header from "../Header"
-import HeaderHome from "../HeaderHome"
-import HeaderMain from "../HeaderMain"
-import NavBar from "../NavBar"
 import HomePage from "../HomePage"
 import SigninForm from "../SigninForm"
 
 import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import DialogContent from '@material-ui/core/DialogContent';
-import Button from '@material-ui/core/Button'
 
 class LoginForm extends  Component {
   constructor(props) {

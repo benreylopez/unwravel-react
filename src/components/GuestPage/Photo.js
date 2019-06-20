@@ -39,21 +39,15 @@ class Photo extends React.Component {
         onMouseEnter={this.toggleHover}
         onMouseLeave={this.toggleHover}
         >
-        <img
-          src={this.props.info.product_imageurl[0]}
-          style={{
-          width: '100%'
-        }}></img>
-        {this.state.hover && <div className="product-opac">
+        <img src={this.props.info.product_imageurl[0]} style={{ width: '100%' }}></img>
+        <div className="product-opac">
           <p>{this.props.info.product_name}</p>
           <p>{this.props.info.price}</p>
         </div>
-}
-
         {lol === 2 && <img className="product-love" src="/assets/image/Love.png"></img>}
-        {this.state.hover && <Button className="details" color="secondary" onClick={this.onDetail}>
+        <Button className="details" color="secondary" onClick={this.onDetail}>
           DETAILS > > >
-        </Button>}
+        </Button>
       </Card>
     )
   }

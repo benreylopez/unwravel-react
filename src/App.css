@@ -282,6 +282,9 @@
 }
 
 @media screen and (max-width: 600px) {
+.pink-button{
+    height: 35px!important;
+  }  
   .mobile-responsive{
     display:block!important;
   }
@@ -825,5 +828,34 @@ button {
   font-size: 20px;
 }
 .mobile-responsive{
+  display: none;
+}
+
+
+.product-opac{
+  display: none;
+}
+.product-list .details {
+  display: none;
+}
+
+.product-list:hover .product-opac,
+.product-list:focus .product-opac,
+.product-list:hover .details,
+.product-list:focus .details{
+  display: block;
+}
+
+
+.product-list .product-feed .show-hover{
+  display: none;
+}
+.product-list .product-feed .hide-hover{
+  display: block;
+}
+.product-list:hover .product-feed .show-hover{
+  display: block;
+}
+.product-list:hover .product-feed .hide-hover{
   display: none;
 }

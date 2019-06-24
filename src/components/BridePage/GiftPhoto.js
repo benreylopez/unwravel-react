@@ -43,7 +43,6 @@ class GiftPhoto extends React.Component{
         return(
                 <Card className="product-list">
                     <img src={this.props.info.product_imageurl[0]} style={{width:'100%'}}></img>
-                    <p>{this.props.info.product_imageurl[0]}</p>
                     <div className="product-opac">
                         <p>{this.props.info.product_name}</p>
                         <p>{this.props.info.price}</p>

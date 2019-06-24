@@ -63,7 +63,7 @@ class ProfilePage extends Component {
     const {user, dispatch} = this.props;
     dispatch(accountActions.me(user));
     portfolioService
-      .list()
+      .getGifts()
       .then((response) => {
         const selectedPT1 = [];
         const selectedPT2 = [];
@@ -71,7 +71,6 @@ class ProfilePage extends Component {
         const selectedPT4 = [];
         let tCnt = 0;
         jData = response.data;
-        jData.sort((a, b) => b.rank - a.rank);
         jData.map(i => {
           switch (tCnt % 4) {
             case 0:
@@ -88,13 +87,10 @@ class ProfilePage extends Component {
               break;
           }
           tCnt++;
+          console.log(i.rank);
         })
-        var temp = 'success';
-        if(jData === null)
-          temp = 'failed'
         
         this.setState({
-          flag: temp,
           portfolios: jData,
           gifts: response.data,
           tCnt: tCnt,
@@ -184,7 +180,6 @@ class ProfilePage extends Component {
                   </p>}
                 </div>
               </div>
-              {<p>{this.state.flag}</p>}
               {gifts && (gifts.length === 0 ? 
               (<div className="mainProduct my-5">
                 <h2>Your registry is empty! Start adding gifts!</h2>

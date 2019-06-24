@@ -179,6 +179,7 @@ class ProfilePage extends Component {
                   </p>}
                 </div>
               </div>
+              {gifts && <p>I am Gifts Length{gifts.length}</p>}
               {gifts && (gifts.length === 0 ? 
               (<div className="mainProduct my-5">
                 <h2>Your registry is empty! Start adding gifts!</h2>

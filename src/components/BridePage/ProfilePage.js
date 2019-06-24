@@ -180,6 +180,7 @@ class ProfilePage extends Component {
                 </div>
               </div>
               {gifts && <p>I am Gifts Length{gifts.length}</p>}
+              {!gifts && <p> I can't download Gifs</p>}
               {gifts && (gifts.length === 0 ? 
               (<div className="mainProduct my-5">
                 <h2>Your registry is empty! Start adding gifts!</h2>

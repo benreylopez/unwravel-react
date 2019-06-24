@@ -57,7 +57,7 @@ function getGifts() {
     method: 'get',
     url: APIPath + '/api/portfolios/getGifts',
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
-  })
+  });
   return response;
 }
 function loans(portfolioCode) {

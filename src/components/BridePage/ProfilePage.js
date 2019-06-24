@@ -89,7 +89,12 @@ class ProfilePage extends Component {
           }
           tCnt++;
         })
+        var temp = 'success';
+        if(jData === null)
+          temp = 'failed'
+        
         this.setState({
+          flag: temp,
           portfolios: jData,
           gifts: response.data,
           tCnt: tCnt,
@@ -179,8 +184,7 @@ class ProfilePage extends Component {
                   </p>}
                 </div>
               </div>
-              {gifts && <p>I am Gifts Length{gifts.length}</p>}
-              {!gifts && <p> I can't download Gifs</p>}
+              {<p>{this.state.flag}</p>}
               {gifts && (gifts.length === 0 ? 
               (<div className="mainProduct my-5">
                 <h2>Your registry is empty! Start adding gifts!</h2>

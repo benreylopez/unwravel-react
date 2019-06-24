@@ -63,7 +63,7 @@ class ProfilePage extends Component {
     const {user, dispatch} = this.props;
     dispatch(accountActions.me(user));
     portfolioService
-      .getGifts()
+      .list()
       .then((response) => {
         const selectedPT1 = [];
         const selectedPT2 = [];

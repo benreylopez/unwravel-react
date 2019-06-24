@@ -16,7 +16,8 @@ const portfolioService = {
   getBrideList,
   editProfile,
   getFriends,
-  deleteFriend
+  deleteFriend,
+  getGiftList
 };
 
 export default portfolioService;
@@ -55,11 +56,21 @@ function detail(portfolioCode) {
 function getGifts() {
   const response = axios({
     method: 'get',
-    url: APIPath + '/api/portfolios/getGifts',
+    url: APIPath + `/api/portfolios/getGifts`,
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
-  })
+  });
   return response;
 }
+
+function getGiftList() {
+  const response = axios({
+    method: 'get',
+    url: APIPath + `/api/portfolios/getgift`,
+    headers: { ...authHeader(), 'Content-Type': 'application/json' },
+  });
+  return response;
+}
+
 function loans(portfolioCode) {
   const response = axios({
     method: 'get',

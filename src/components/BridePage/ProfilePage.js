@@ -63,7 +63,7 @@ class ProfilePage extends Component {
     const {user, dispatch} = this.props;
     dispatch(accountActions.me(user));
     portfolioService
-      .getGifts()
+      .getGiftList()
       .then((response) => {
         const selectedPT1 = [];
         const selectedPT2 = [];
@@ -87,7 +87,6 @@ class ProfilePage extends Component {
               break;
           }
           tCnt++;
-          console.log(i.rank);
         })
         
         this.setState({

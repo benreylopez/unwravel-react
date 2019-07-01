@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {accountActions} from '../../_actions';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
 import Footer from '../Footer'
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
 import BHeader from '../BHeader'
 import Button from '@material-ui/core/Button';
 import {portfolioService} from '../../_services';
@@ -21,8 +14,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import PersonIcon from '@material-ui/icons/Person';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = {
@@ -122,19 +113,13 @@ class EditFriendsPage extends Component {
                 classes={{
                 paperFullWidth: classes.dialogCustomizedWidth
               }}>
-                <DialogTitle id="alert-dialog-title">{"Do you want to delete this friend?"}</DialogTitle>
-                {/* <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Let Google help apps determine location. This means sending anonymous location
-                    data to Google, even when no apps are running.
-                  </DialogContentText>
-                </DialogContent> */}
+                <DialogTitle id="alert-dialog-title">{"Do you want to remove this Friend?"}</DialogTitle>
                 <DialogActions>
-                  <Button onClick={this.handleClose} color="primary">
-                    Disagree
-                  </Button>
                   <Button onClick={this.handleAgree} color="primary" autoFocus>
                     Agree
+                  </Button>
+                  <Button onClick={this.handleClose} color="primary">
+                    Disagree
                   </Button>
                 </DialogActions>
               </Dialog>

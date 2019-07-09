@@ -147,7 +147,8 @@ class DetailPage extends React.Component {
 			</div>
             {/* color_thumbnail */}
             <p className="product-description">Description</p>
-            <p>{info.description}</p>
+            <div dangerouslySetInnerHTML={{ __html: info.description }}>
+            </div>
           </div>
         </div>
       </div>

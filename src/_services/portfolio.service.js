@@ -56,7 +56,7 @@ function detail(portfolioCode) {
 function getGifts() {
   const response = axios({
     method: 'get',
-    url: APIPath + `/api/portfolios/getGifts`,
+    url: APIPath + `/api/portfolios/getGifts/`,
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   });
   return response;

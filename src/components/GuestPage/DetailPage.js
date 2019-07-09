@@ -106,7 +106,8 @@ class DetailPage extends React.Component {
                 }
               </div>
               <p className="product-description">Description</p>
-              <p>{info.description}</p>
+              <div dangerouslySetInnerHTML={{ __html: info.description }}>
+              </div>
             </div>
           </div>
         </div>

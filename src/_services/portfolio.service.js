@@ -65,7 +65,7 @@ function getGifts() {
 function getGiftList() {
   const response = axios({
     method: 'get',
-    url: APIPath + `/api/portfolios/getgift`,
+    url: APIPath + `/api/portfolios/getgift/`,
     headers: { ...authHeader(), 'Content-Type': 'application/json' },
   });
   return response;

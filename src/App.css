@@ -859,3 +859,6 @@ button {
 .product-list:hover .product-feed .hide-hover{
   display: none;
 }
+.product-description ul{
+  margin-left:25px;
+}

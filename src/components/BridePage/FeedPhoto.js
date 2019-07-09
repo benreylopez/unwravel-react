@@ -19,6 +19,7 @@ class FeedPhoto extends React.Component{
         this.setState({lol:this.props.info.lol})
     }
     lolChange(state) {
+        console.log(this.props.info.uniq_id);
         if(this.state.lol === 2 && (state === 0 || state === 1))
         {
             portfolioService

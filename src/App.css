@@ -259,7 +259,8 @@
 }
 .sidebar_button Button{
   height: 94px;
-  width: 226px;
+  width: 100%;
+  max-width: 226px;
   background: #e9dff8;
   font-family: Montserrat;
   font-size: 14px;
@@ -280,8 +281,43 @@
 .mainProduct {
   text-align: center;
 }
+.class-filter{
+  padding-left: 60px;
+  padding-right: 50px;
+}
+@media screen and (max-width: 995px) {
+  .buttonmargin{
+    padding-right: calc(45px - 995px + 100% )!important;
+  }
+  .class-filter{
+    padding-right: 0px!important;
+  }
+}
 
+@media screen and (max-width: 1600px) {
+  .class-filter{
+    padding-left:0px!important;
+  }
+}
+
+@media screen and (max-width: 772px) {
+  .class-filter{
+    padding:0 60px!important;
+  }
+  .btn_friend{
+    margin-top: 5px!important;
+  }
+}
+.desktop-responsive{
+  display: flex;
+  margin-left: -15px;
+  flex-wrap: wrap;
+}
 @media screen and (max-width: 600px) {
+  .sidebar_button Button{
+    height: 55px;
+    margin-top: 20px!important;
+  }
 .pink-button{
     height: 35px!important;
   }  
@@ -301,6 +337,7 @@
   }
   .buttonmargin{
     margin-top: 30px;
+    padding:0 60px!important;
   }
   .photomargin{
     margin-top: 0px;
@@ -403,7 +440,7 @@
   letter-spacing: 0.6px;
   text-transform: uppercase;
   margin-bottom: 32px;
-  padding-top: 80px;
+  padding-top: 50px;
   padding-bottom: 20px;
 }
 .filters-inactivate{
@@ -595,7 +632,6 @@ button.details:focus{
 }
 .btn_friend{
   float: right;
-  margin-right: 45px!important;
 }
 .product-container{
   margin-left:auto;
@@ -861,4 +897,7 @@ button {
 }
 .product-description ul{
   margin-left:25px;
+}
+.buttonmargin{
+  padding-right: 45px;
 }

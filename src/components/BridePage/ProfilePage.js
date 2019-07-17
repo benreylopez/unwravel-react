@@ -53,7 +53,9 @@ class ProfilePage extends Component {
       loved: false,
       bras: false,
       panties: false,
-      lingerie: false
+      lingerie: false,
+      victoria: false,
+      zaful: false
     }
   }
 
@@ -114,6 +116,12 @@ class ProfilePage extends Component {
     if (name === "lingerie") {
       this.state.lingerie = event.target.checked;
     }
+    if (name === "victoria") {
+      this.state.victoria = event.target.checked;
+    }
+    if (name === "zaful") {
+      this.state.zaful = event.target.checked;
+    }
     this.setProducts();
     console.log(this.state);
   }
@@ -127,7 +135,15 @@ class ProfilePage extends Component {
       .state
       .portfolios
       .map(i => {
-        if (((i.lol === 2 && this.state.loved === true) || (i.product_category === "Bras" && this.state.bras === true) || (i.product_category === "Panties" && this.state.panties === true) || (i.product_category === "Lingerie" && this.state.lingerie === true) || (this.state.loved === false && this.state.bras === false && this.state.panties === false && this.state.lingerie === false))) {
+        if (
+            ((i.brand_name === 'Zaful' && this.state.zaful) ||
+             (i.brand_name !== 'Zaful' && this.state.victoria) ||
+             (!this.state.zaful && !this.state.victoria)) &&
+            ((i.lol === 2 && this.state.loved === true) ||
+            (i.product_category === "Bras" && this.state.bras === true) ||
+            (i.product_category === "Panties" && this.state.panties === true) ||
+            (i.product_category === "Lingerie" && this.state.lingerie === true) ||
+            (this.state.loved === false && this.state.bras === false && this.state.panties === false && this.state.lingerie === false))) {
           switch (tCnt % 4) {
             case 0:
               selectedPT1.push(i);
@@ -150,121 +166,83 @@ class ProfilePage extends Component {
   render() {
     const {account} = this.props;
     const {gifts} = this.state;
-    const {loved, bras, panties, lingerie} = this.state;
+    const {loved, bras, panties, lingerie, victoria, zaful} = this.state;
     return (
       <div>
         <div className="Bigcontainer">
           <BHeader></BHeader>
           <div className="row my-5">
-            <div className="col-md-9 col-12">
-              <div className="size_bar row">
-                <div className="col-md-3 col-6 profile_logo size_bar_item">
-                  <p>Top Size:</p>
-                  {account !== undefined && <p className="size">{account.topsize}
-                  </p>}
-                </div>
-                <div className="col-md-3 col-6 profile_logo size_bar_item">
-                  <p>Bottom Size:</p>
-                  {account !== undefined && <p className="size">{account.bottomsize}
-                  </p>}
-                </div>
-                <div className="col-md-3 col-6 profile_logo size_bar_item">
-                  <p>Panty Size:</p>
-                  {account !== undefined && <p className="size">{account.pantysize}
-                  </p>}
-                </div>
-                <div className="col-md-3 col-6 profile_logo size_bar_item">
-                  <p>Bra Size:</p>
-                  {account !== undefined && <p className="size">{account.brasize}
-                  </p>}
-                </div>
-              </div>
-              {gifts && (gifts.length === 0 ? 
-              (<div className="mainProduct my-5">
-                <h2>Your registry is empty! Start adding gifts!</h2>
-              </div>)
-              :(<div className="row">
-                <div className="col-md-12 classFlex">
-                  <h2 className="text-gift">ITEMS YOU LOVED</h2>
-                </div>
-
-                <div className="col-md-3 col-sm-6 col-12">
-                  {this
-                    .state
-                    .selectedPT1
-                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
-                </div>
-                <div
-                  className="col-md-3 col-sm-6 col-12 photomargin">
-                  {this
-                    .state
-                    .selectedPT2
-                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
-                </div>
-                <div className="col-md-3 col-sm-6 col-12">
-                  {this
-                    .state
-                    .selectedPT3
-                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
-                </div>
-                <div
-                  className="col-md-3 col-sm-6 col-12 photomargin">
-                  {this
-                    .state
-                    .selectedPT4
-                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
-                </div>
-              </div>))}
-
-            </div>
-            <div className="col-md-3 col-12 sidebar_button">
+			<div className="col-md-9">
+				<div className="size_bar row">
+					<div className="col-md-3 col-6 profile_logo size_bar_item">
+					<p>Top Size:</p>
+					{account !== undefined && <p className="size">{account.topsize}
+					</p>}
+					</div>
+					<div className="col-md-3 col-6 profile_logo size_bar_item">
+					<p>Bottom Size:</p>
+					{account !== undefined && <p className="size">{account.bottomsize}
+					</p>}
+					</div>
+					<div className="col-md-3 col-6 profile_logo size_bar_item">
+					<p>Panty Size:</p>
+					{account !== undefined && <p className="size">{account.pantysize}
+					</p>}
+					</div>
+					<div className="col-md-3 col-6 profile_logo size_bar_item">
+					<p>Bra Size:</p>
+					{account !== undefined && <p className="size">{account.brasize}
+					</p>}
+					</div>
+				</div>
+			</div>
+			<div className="sidebar_button col-md-3">
 				<div className="buttonmargin">
-              <Link
-                to="/bride/add_friend"
-                style={{
-                textDecoration: 'inherit'
-              }}>
-                <Button
-                  className='btn_friend'
-                  classes={{
-                  label: "add_friend"
-                }}
-                  style={{
-                  marginTop: '0px'
-                }}
-                  type="submit">Add Friends
-                  <img
-                    style={{
-                    marginLeft: "20px"
-                  }}
-                    src="/assets/image/lingerie.png"></img>
-                </Button>
-              </Link>
-              <Link
-                to="/bride/product_page"
-                style={{
-                textDecoration: 'inherit'
-              }}>
-                <Button
-                  className='btn_friend'
-                  classes={{
-                  label: "add_friend"
-                }}
-                  type="submit">Add Gifts
-                  <img
-                    style={{
-                    marginLeft: "20px"
-                  }}
-                    src="/assets/image/lingerie.png"></img>
-                </Button>
-              </Link>
-			  </div>
-              <div
-                style={{
-                padding: '0 60px',
-                marginTop: '190px'
-              }}>
-                <p className="filters-spec">FILTERS</p>
+				<Link
+					to="/bride/add_friend"
+					style={{
+					textDecoration: 'inherit'
+				}}>
+					<Button
+					className='btn_friend'
+					classes={{
+					label: "add_friend"
+					}}
+					style={{
+					marginTop: '0px'
+					}}
+					type="submit">Add Friends
+					<img
+						style={{
+						marginLeft: "20px"
+					}}
+						src="/assets/image/lingerie.png"></img>
+					</Button>
+				</Link>
+				<Link
+					to="/bride/product_page"
+					style={{
+					textDecoration: 'inherit'
+				}}>
+					<Button
+					className='btn_friend'
+					classes={{
+					label: "add_friend"
+					}}
+					type="submit">Add Gifts
+					<img
+						style={{
+						marginLeft: "20px"
+					}}
+						src="/assets/image/lingerie.png"></img>
+					</Button>
+				</Link>
+				</div>
+			</div>
+		  <div className="col-md-3 col-12 order-md-12">
+				
+              <div className="class-filter">
+                <p className="filters-spec">TYPES</p>
                 <FormGroup>
                   <FormControlLabel
                     className="Ifilters"
@@ -311,8 +289,77 @@ class ProfilePage extends Component {
                     label="Lingerie"
                     labelPlacement="start"></FormControlLabel>
                 </FormGroup>
+
+                <p className="filters-spec">BRANDS</p>
+                <FormGroup>
+                  <FormControlLabel
+                    className="Ifilters"
+                    control={< Checkbox className = "IAM" checked = {
+                    victoria
+                  }
+                  onChange = {
+                    this.handleChange('victoria')
+                  }
+                  style = {{color:'rgb(149, 126, 184)'}}/>}
+                    label="VictoriaSecret"
+                    labelPlacement="start"></FormControlLabel>
+                  <FormControlLabel
+                    className="Ifilters"
+                    control={< Checkbox className = "IAM" checked = {
+                    zaful
+                  }
+                  onChange = {
+                    this.handleChange('zaful')
+                  }
+                  style = {{color:'rgb(149, 126, 184)'}}/>}
+                    label="Zaful"
+                    labelPlacement="start"></FormControlLabel>
+                </FormGroup>
               </div>
+
             </div>
+
+            <div className="col-md-9 col-12 order-md-1">
+              
+              {gifts && (gifts.length === 0 ? 
+              (<div className="mainProduct my-5">
+                <h2>Your registry is empty! Start adding gifts!</h2>
+              </div>)
+              :(<div className="row">
+                <div className="col-md-12 classFlex">
+                  <h2 className="text-gift">ITEMS YOU LOVED</h2>
+                </div>
+
+                <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT1
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+                <div
+                  className="col-md-3 col-sm-6 col-12 photomargin">
+                  {this
+                    .state
+                    .selectedPT2
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+                <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT3
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+                <div
+                  className="col-md-3 col-sm-6 col-12 photomargin">
+                  {this
+                    .state
+                    .selectedPT4
+                    .map((i, index) => <GiftPhoto info={i} key={index}/>)}
+                </div>
+              </div>))}
+
+            </div>
+            
 
           </div>
         </div>

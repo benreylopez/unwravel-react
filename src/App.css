@@ -285,6 +285,9 @@
   padding-left: 60px;
   padding-right: 50px;
 }
+.add_friend img {
+  width: 37px;
+}
 @media screen and (max-width: 995px) {
   .buttonmargin{
     padding-right: calc(45px - 995px + 100% )!important;

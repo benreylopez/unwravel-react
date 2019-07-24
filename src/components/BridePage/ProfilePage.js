@@ -216,7 +216,7 @@ class ProfilePage extends Component {
 						style={{
 						marginLeft: "20px"
 					}}
-						src="/assets/image/lingerie.png"></img>
+						src="/assets/image/addfriend.png"></img>
 					</Button>
 				</Link>
 				<Link

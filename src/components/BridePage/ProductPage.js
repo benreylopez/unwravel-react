@@ -187,7 +187,7 @@ class ProductPage extends Component {
 						this.handleChange('victoria')
 					}
 					style = {{color:'rgb(149, 126, 184)'}}/>}
-						label="VictoriaSecret"
+						label="Victoria Secret"
 						labelPlacement="start"></FormControlLabel>
 					<FormControlLabel
 						className="Ifilters"

@@ -136,7 +136,7 @@ class GuestFeed extends Component {
 				</Link>
             </div>
             <div className="col-md-7 col-7 row">
-              {account !== undefined && <h2 style={{margin:'auto'}}>{account.firstname} {account.lastname} Registry</h2>}
+              {account !== undefined && <h2 style={{margin:'auto'}}>{account.firstname} {account.lastname}'s Registry</h2>}
             </div>
             <div className="col-md-3 userMark"></div>
           </div>
@@ -228,7 +228,7 @@ class GuestFeed extends Component {
 							this.handleChange('victoria')
 						}
 						style = {{color:'rgb(149, 126, 184)'}}/>}
-							label="VictoriaSecret"
+							label="Victoria Secret"
 							labelPlacement="start"></FormControlLabel>
 						<FormControlLabel
 							className="Ifilters"

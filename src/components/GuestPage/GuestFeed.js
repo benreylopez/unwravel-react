@@ -11,6 +11,7 @@ import Header from '../Header'
 import Checkbox from '@material-ui/core/Checkbox';
 import {FormControlLabel} from '@material-ui/core';
 import FormGroup from '@material-ui/core/FormGroup';
+import {FlapperSpinner} from "react-spinners-kit";
 
 class GuestFeed extends Component {
   constructor(props) {
@@ -18,11 +19,12 @@ class GuestFeed extends Component {
     this.state = {
 	  gifts: '',
 	  loved: false,
-      bras: false,
-      panties: false,
-      lingerie: false,
-      victoria: false,
-      zaful: false,
+    bras: false,
+    panties: false,
+    lingerie: false,
+    victoria: false,
+    zaful: false,
+    loading: true,
     }
   }
 
@@ -56,7 +58,8 @@ class GuestFeed extends Component {
         }
         tCnt++;
       })
-      this.setState({portfolios:jData, gifts: response.data, tCnt: tCnt, selectedPT1: selectedPT1, selectedPT2: selectedPT2, selectedPT3: selectedPT3, selectedPT4: selectedPT4})
+      console.log("I am loading", this.state.loading);
+      this.setState({loading:false, portfolios:jData, gifts: response.data, tCnt: tCnt, selectedPT1: selectedPT1, selectedPT2: selectedPT2, selectedPT3: selectedPT3, selectedPT4: selectedPT4})
     })
     
   }
@@ -123,8 +126,8 @@ class GuestFeed extends Component {
   }
   render() {
     const {account} = this.props.location.state;
-    const {loved, bras, panties, lingerie, victoria, zaful} = this.state;
-    console.log(account);
+    const {loved, bras, panties, lingerie, victoria, zaful,loading} = this.state;
+    console.log("STATE",loading);
     const {gifts} = this.state;
     return (
       <div>
@@ -246,54 +249,56 @@ class GuestFeed extends Component {
 			</div>
 
             <div className="col-md-9 col-12 order-md-1">
-              
+            <FlapperSpinner size={50} color="rgb(149, 126, 184)" loading={loading}/> {!loading && <div>
               {gifts && !gifts.length && <div className="mainProduct my-5">
                 <h2>There is no gift</h2>
               </div>}
-              {gifts && gifts.length && <div className="row">
+              {gifts && gifts.length && 
+              <div className="row">
                 <div className="col-md-12 classFlex">
                   <h2 className="text-gift"></h2>
                 </div>
-				<div className="desktop-responsive">
-					<div className="col-md-3 col-sm-6 col-12">
-					{this
-						.state
-						.selectedPT1
-						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
-					</div>
-					<div
-					className="col-md-3 col-sm-6 col-12 photomargin">
-					{this
-						.state
-						.selectedPT2
-						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
-					</div>
-					<div className="col-md-3 col-sm-6 col-12">
-					{this
-						.state
-						.selectedPT3
-						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
-					</div>
-					<div
-					className="col-md-3 col-sm-6 col-12 photomargin">
-					{this
-						.state
-						.selectedPT4
-						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
-					</div>
-				</div>
-				<div className='mobile-responsive'>
-					<div className="col-12">
-					{this
-						.state
-						.portfolios
-						.map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
-					</div>
-				</div>
+        
+                
+                <div className="desktop-responsive">
+                  <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT1
+                    .map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+                  </div>
+                  <div
+                  className="col-md-3 col-sm-6 col-12 photomargin">
+                  {this
+                    .state
+                    .selectedPT2
+                    .map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+                  </div>
+                  <div className="col-md-3 col-sm-6 col-12">
+                  {this
+                    .state
+                    .selectedPT3
+                    .map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+                  </div>
+                  <div
+                  className="col-md-3 col-sm-6 col-12 photomargin">
+                  {this
+                    .state
+                    .selectedPT4
+                    .map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+                  </div>
+                </div>
+                <div className='mobile-responsive'>
+                  <div className="col-12">
+                  {this
+                    .state
+                    .portfolios
+                    .map((i, index) => <Photo info={i} key={index} is_gift={true} account={account}/>)}
+                  </div>
+                </div>
+                </div>}
               </div>}
-
             </div>
-			
           </div>
         </div>
         <Footer></Footer>

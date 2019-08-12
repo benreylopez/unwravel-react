@@ -76,6 +76,7 @@ class ProductPage extends Component {
       .portfolios
       .map(i => {
         if (
+			(i.lol !==1 && i.lol !== 2) &&
           ((i.brand_name === 'Zaful' && this.state.zaful) ||
            (i.brand_name !== 'Zaful' && this.state.victoria) ||
            (!this.state.zaful && !this.state.victoria)) &&

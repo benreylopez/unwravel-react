@@ -23,21 +23,9 @@ class DetailPage extends React.Component {
       .buyProduct
       .bind(this);
   }
-  leftChange() {
-    var ind = this.state.index_img;
-    if (ind == 0) 
-      ind = this.props.location.state.info.product_imageurl.length;
-    ind--;
-    this.setState({index_img: ind})
-  }
-  rightChange() {
-    var ind = this.state.index_img;
-    if (ind == this.props.location.state.info.product_imageurl.length - 1) 
-      ind = -1;
-    ind++;
-    this.setState({index_img: ind})
-  }
-  buyProduct() {
+  componentDidMount(){
+    
+    document.write('<a style="display:block;width:100%;height:1px;" class="aff-ad-none"></a>');
     window.AFF_ONLOAD = window.AFF_ONLOAD || [];
     window.AFF_ONLOAD.push({
       lkid:"51525399",
@@ -55,6 +43,22 @@ class DetailPage extends React.Component {
     aff_s.async = !0;
     aff_s.src = "https://js.firstgrabber.com/affasi_js.min.js";
     aff_h.insertBefore(aff_s, aff_h.firstChild);
+  }
+  leftChange() {
+    var ind = this.state.index_img;
+    if (ind == 0) 
+      ind = this.props.location.state.info.product_imageurl.length;
+    ind--;
+    this.setState({index_img: ind})
+  }
+  rightChange() {
+    var ind = this.state.index_img;
+    if (ind == this.props.location.state.info.product_imageurl.length - 1) 
+      ind = -1;
+    ind++;
+    this.setState({index_img: ind})
+  }
+  buyProduct() {
     window.open(this.props.location.state.info.pageurl)
   }
   onClick(index){

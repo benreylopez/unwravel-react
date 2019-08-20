@@ -10,7 +10,6 @@
     "contentful": "^7.6.0",
     "firebase": "^6.0.2",
     "formsy-react": "^1.1.5",
-    "jquery": "^3.4.1",
     "material-ui": "^0.20.2",
     "mdi-material-ui": "^6.0.0",
     "react": "^16.8.6",

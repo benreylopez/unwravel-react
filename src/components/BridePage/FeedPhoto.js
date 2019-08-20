@@ -71,8 +71,15 @@ class FeedPhoto extends React.Component{
                         {(lol === 2 ? <img className="product-love show-hover" src="/assets/image/Love.png" onClick ={() => this.lolChange(0)}></img>
                                     :<img className="product-love show-hover" src="/assets/image/ULove.png" onClick ={() => this.lolChange(2)}></img>)}
                     </div>
-                    
-                    <Button className = "details" color="secondary" onClick = {this.onDetail}>
+                    <Button
+					className='btn_friend details'
+					classes={{
+					label: "add_friend"
+					}}
+					style={{
+					marginTop: '0px'
+                    }}
+                    onClick = {this.onDetail}>
                         DETAILS > > >
                     </Button>
                 </Card>

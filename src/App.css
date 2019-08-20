@@ -271,7 +271,21 @@
   text-transform: capitalize;
   margin: 5px;
 }
-
+.product-list Button{
+  width: 100%;
+  color: #fff;
+  background: #c9b2ec;
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.3818184px;
+  text-transform: capitalize;
+}
+.product-list Button:hover{
+  background-color: rgba(0, 0, 0, 0.5);
+}
 .size_bar_item {
   margin: auto;
 }

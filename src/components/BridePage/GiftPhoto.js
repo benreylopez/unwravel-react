@@ -69,10 +69,15 @@ class GiftPhoto extends React.Component{
                     <div className="product-feed">
                         <img className="product-love show-hover" src="/assets/image/Love.png" onClick ={this.removeGift}></img>
                     </div>
-
-                    <Button className = "details" color="secondary" onClick = {this.onDetail}>
-                        DETAILS > > >
-                    </Button>
+                    <Button
+					className='btn_friend details'
+					classes={{
+					label: "add_friend"
+					}}
+					style={{
+					marginTop: '0px'
+					}}
+					onClick = {this.onDetail}>DETAILS > > ></Button>
                 <Dialog
                 open={this.state.open}
                 onClose={this.handleClose}

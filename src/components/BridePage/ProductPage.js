@@ -9,6 +9,7 @@ import FeedPhoto from './FeedPhoto';
 import {FlapperSpinner} from "react-spinners-kit";
 import BHeader from '../BHeader'
 import {uid} from 'react-uid'
+import { MapsZoomOutMap } from 'material-ui/svg-icons';
 
 class ProductPage extends Component {
 
@@ -70,13 +71,12 @@ class ProductPage extends Component {
     const selectedPT3 = [];
     const selectedPT4 = [];
 	var tCnt = 0;
-	this.state.portfolios.sort((a, b) => b.lol - a.lol);
+	this.state.portfolios.sort((a, b) => 0.5 - Math.random());
     this
       .state
       .portfolios
       .map(i => {
         if (
-			(i.lol !==1 && i.lol !== 2) &&
           ((i.brand_name === 'Zaful' && this.state.zaful) ||
            (i.brand_name !== 'Zaful' && this.state.victoria) ||
            (!this.state.zaful && !this.state.victoria)) &&

@@ -45,9 +45,15 @@ class Photo extends React.Component {
           <p>{this.props.info.price}</p>
         </div>
         {lol === 2 && <img className="product-love" src="/assets/image/Love.png"></img>}
-        <Button className="details" color="secondary" onClick={this.onDetail}>
-          DETAILS > > >
-        </Button>
+        <Button
+					className='btn_friend details'
+					classes={{
+					label: "add_friend"
+					}}
+					style={{
+					marginTop: '0px'
+					}}
+					onClick = {this.onDetail}>DETAILS > > ></Button>
       </Card>
     )
   }

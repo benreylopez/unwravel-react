@@ -38,6 +38,23 @@ class DetailPage extends React.Component {
     this.setState({index_img: ind})
   }
   buyProduct() {
+    window.AFF_ONLOAD = window.AFF_ONLOAD || [];
+    window.AFF_ONLOAD.push({
+        lkid: "49906112",
+        affid: "10183157",
+        size: "120*600",
+        type: "1",
+        uid: "491666",
+        language: "en",
+        web_id: "45",
+        version: 110
+    });
+    var aff_s = document.createElement("script"),
+        aff_h = document.getElementsByTagName("head")[0];
+    aff_s.charset = "utf-8";
+    aff_s.async = !0;
+    aff_s.src = "https://js.firstgrabber.com/affasi_js.min.js";
+    aff_h.insertBefore(aff_s, aff_h.firstChild);
     window.open(this.props.location.state.info.pageurl)
   }
   onClick(index){
@@ -80,6 +97,7 @@ class DetailPage extends React.Component {
               {lolstate === 1
                 ? <img className="product-like" src="/assets/image/ULike.png"></img>
                 : (lolstate === 2 && <img className="product-love" src="/assets/image/Love.png"></img>)}
+                
               <Button className="pink-button" onClick={this.buyProduct}>Buy</Button>
 
             </Card>

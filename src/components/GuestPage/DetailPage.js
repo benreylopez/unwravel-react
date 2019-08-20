@@ -40,14 +40,14 @@ class DetailPage extends React.Component {
   buyProduct() {
     window.AFF_ONLOAD = window.AFF_ONLOAD || [];
     window.AFF_ONLOAD.push({
-        lkid: "49906112",
-        affid: "10183157",
-        size: "120*600",
-        type: "1",
-        uid: "491666",
-        language: "en",
-        web_id: "45",
-        version: 110
+      lkid:"51525399",
+      affid:"10183157",
+      size:"120*600",
+      type:"3",
+      uid:"491666",
+      language:"en",
+      web_id:"45",
+      version:110
     });
     var aff_s = document.createElement("script"),
         aff_h = document.getElementsByTagName("head")[0];

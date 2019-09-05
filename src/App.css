@@ -918,3 +918,13 @@ button {
 .buttonmargin{
   padding-right: 45px;
 }
+.empty-subtitle{
+  padding-left: 29%;
+  padding-right: 29%;
+}
+.empty-detail h5{
+  text-align: left;
+}
+.empty-detail{
+  margin-top: 30px;
+}

@@ -25,24 +25,24 @@ class DetailPage extends React.Component {
   }
   componentDidMount(){
     
-    document.write('<a style="display:block;width:100%;height:1px;" class="aff-ad-none"></a>');
-    window.AFF_ONLOAD = window.AFF_ONLOAD || [];
-    window.AFF_ONLOAD.push({
-      lkid:"51525399",
-      affid:"10183157",
-      size:"120*600",
-      type:"3",
-      uid:"491666",
-      language:"en",
-      web_id:"45",
-      version:110
-    });
-    var aff_s = document.createElement("script"),
-        aff_h = document.getElementsByTagName("head")[0];
-    aff_s.charset = "utf-8";
-    aff_s.async = !0;
-    aff_s.src = "https://js.firstgrabber.com/affasi_js.min.js";
-    aff_h.insertBefore(aff_s, aff_h.firstChild);
+    // document.write('<a style="display:block;width:100%;height:1px;" class="aff-ad-none"></a>');
+    // window.AFF_ONLOAD = window.AFF_ONLOAD || [];
+    // window.AFF_ONLOAD.push({
+    //   lkid:"51525399",
+    //   affid:"10183157",
+    //   size:"120*600",
+    //   type:"3",
+    //   uid:"491666",
+    //   language:"en",
+    //   web_id:"45",
+    //   version:110
+    // });
+    // var aff_s = document.createElement("script"),
+    //     aff_h = document.getElementsByTagName("head")[0];
+    // aff_s.charset = "utf-8";
+    // aff_s.async = !0;
+    // aff_s.src = "https://js.firstgrabber.com/affasi_js.min.js";
+    // aff_h.insertBefore(aff_s, aff_h.firstChild);
   }
   leftChange() {
     var ind = this.state.index_img;
@@ -60,6 +60,17 @@ class DetailPage extends React.Component {
   }
   buyProduct() {
     window.open(this.props.location.state.info.pageurl)
+    window.AFF_ONLOAD = window.AFF_ONLOAD || [];
+    window.AFF_ONLOAD.push({
+      lkid:"51525399",
+      affid:"10183157",
+      size:"120*600",
+      type:"3",
+      uid:"491666",
+      language:"en",
+      web_id:"45",
+      version:110
+    });
   }
   onClick(index){
 	  this.setState({clicked:index, index_img:index})
